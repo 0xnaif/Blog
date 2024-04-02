@@ -20,18 +20,50 @@ function showEmail(element) {
     email_info.setAttribute("style", "display: flex");
 }
 
-function back(element) {
-    let back_el = element;
+function showPassword(element) {
+    let back_el = document.getElementsByClassName("back")[0];
+    let password_info = document.getElementsByClassName("password")[0];
+    let email_el = document.getElementsByClassName("email-choice")[0];
+    let password_el = element;
+    let logout_el = document.getElementsByClassName("log-out")[0];
+    
+    back_el.setAttribute("style", "display: flex");
+    email_el.setAttribute("style", "display: none");
+    password_el.setAttribute("style", "display: none");
+    logout_el.setAttribute("style", "display: none");
+    password_info.setAttribute("style", "display: flex");
+}
+
+function back() {
+    let back_el = document.getElementsByClassName("back")[0];
     let email_info = document.getElementsByClassName("email")[0];
+    let password_info = document.getElementsByClassName("password")[0];
     let email_el = document.getElementsByClassName("email-choice")[0];
     let password_el = document.getElementsByClassName("password-choice")[0];
     let logout_el = document.getElementsByClassName("log-out")[0];
     
     email_info.setAttribute("style", "display: none");
+    password_info.setAttribute("style", "display: none");
     back_el.setAttribute("style", "display: none");
     email_el.setAttribute("style", "display: flex");
     password_el.setAttribute("style", "display: flex");
     logout_el.setAttribute("style", "display: flex");
+}
+
+function togglePasswordVisibility() {
+    let passowrdField = document.getElementById("password");
+    let passwordIcon = document.querySelector(".toggle-password");
+
+    if (passowrdField.type === "password") {
+        passowrdField.type = "text";
+        passwordIcon.classList.remove("fa-eye-slash");
+        passwordIcon.classList.add("fa-eye");
+    }
+    else {
+        passowrdField.type = "password";
+        passwordIcon.classList.remove("fa-eye");
+        passwordIcon.classList.add("fa-eye-slash");
+    }
 }
 
 function hideUserProf() {
