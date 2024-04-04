@@ -97,11 +97,24 @@ function hideConfirm(className) {
 const url = document.URL;
 
 if (url.includes("posts")) {
-    let deleteIcns = document.querySelectorAll(".main .posts i");
+    let deleteIcns = document.querySelectorAll(".main .posts .post .right .fa-trash-can");
     for (let i =  0; i < deleteIcns.length; i++) {
         deleteIcns[i].addEventListener("click", () => {
-            var postEl = deleteIcns[i].parentElement;
+            var postEl = deleteIcns[i].parentElement.parentElement;
             postEl.remove();
         })
     }
+
+    let editIcns = document.querySelectorAll(".main .posts .post .right .fa-pen-to-square");
+    for (let i =  0; i < editIcns.length; i++) {
+        editIcns[i].addEventListener("click", () => {
+            window.location.href = "./new-post.html";
+        })
+    }
+}
+
+if (url.includes("new")) {
+    document.getElementById("backButton").addEventListener("click", () => {
+        window.history.back();
+    });
 }
