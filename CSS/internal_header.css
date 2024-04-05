@@ -17,6 +17,14 @@
     margin: 0;
 }
 
+.header > a {
+    color: #FFF;
+    font-size: 28px;
+    margin: 0;
+    text-decoration: none;
+    font-weight: 700;
+}
+
 .header .nav {
     display: flex;
     flex-direction: row;
