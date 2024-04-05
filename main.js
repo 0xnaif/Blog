@@ -97,6 +97,14 @@ function hideConfirm(className) {
 const url = document.URL;
 
 if (url.includes("posts")) {
+    let postEl = document.querySelectorAll(".main .posts .post");
+    for (let i =  0; i < postEl.length; i++) {
+        postEl[i].addEventListener("click", (event) => {
+            if (event.target.closest('.post') && !event.target.closest('.right'))
+                window.location.href = "./post_view.html";
+        })
+    }
+    
     let deleteIcns = document.querySelectorAll(".main .posts .post .right .fa-trash-can");
     for (let i =  0; i < deleteIcns.length; i++) {
         deleteIcns[i].addEventListener("click", () => {
@@ -113,7 +121,7 @@ if (url.includes("posts")) {
     }
 }
 
-if (url.includes("new")) {
+if (url.includes("new") || url.includes("view")) {
     document.getElementById("backButton").addEventListener("click", () => {
         window.history.back();
     });
