@@ -65,6 +65,14 @@ body {
 
 .main .date {
     color: #ABABAB;
+    margin-bottom: 20px;
+}
+
+.main .post {
+    width: 90%;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 150%;
 }
 
 .footer {
