@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    background-color: #F6F6F9;
+}
+
+li {
+    list-style: none;
+}
+
+/* a {
+    text-decoration: none;
+} */
+
+.header {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFC85E;
+    padding: 14px 32px;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+}
+
+.header h3 {
+    color: #FFF;
+    font-size: 28px;
+    margin: 0;
+}
+
+.header .nav {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.header .nav div {
+    padding: 10px;
+    width: 160px;
+    border: 2px solid #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 9px;
+    color: #FFF;
+}
+
+.header .nav .about {
+    transition: .4s;
+    cursor: pointer;
+}
+
+.header .nav .about:hover {
+    background-color: #FFF;
+    color: #FFC85E;
+    border-color: #FFC85E;
+}
+
+.header .nav .about a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.header .nav .about:hover a, .header .nav .about a:hover {
+    color: #FFC85E;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.main h3 {
+    font-size: 28px;
+    color: #FFC85E; 
+    margin-bottom: 28px;
+}
+
+.main p {
+    font-size: 22px;
+    width: 30%;
+    margin: 0 auto 60px;
+}
+
+.main .butt {
+    display: flex;
+    gap: 30px;
+}
+
+.main .butt a {
+    text-decoration: none;
+}
+
+.main .butt button {
+    padding: 10px 40px;
+    border-radius: 9px;
+    border: none;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.main .butt button:hover {
+    opacity: 0.6;
+}
+
+.main button:first-of-type {
+    background-color: #FFA800;
+    color: #FFF;
+}
+
+.main button:first-of-type a {
+    color: #FFF;
+}
+
+.main button:last-of-type {
+    background-color: #FFF;
+    color: #FFA800;
+    border: 1.7px solid #FFA800;
+}
+
+.main button:last-of-type a {
+    color: #FFA800;
+}
+
+.footer {
+    width: 100%;
+    background-color: #FFC85E;
+    margin-bottom: 0;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer h3 {
+    color: #FFF;
+    font-size: 24px;
+    margin: 15px 20px 0;
+}
+
+.footer p {
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    margin: 8px;
+}
