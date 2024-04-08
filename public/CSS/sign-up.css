@@ -13,10 +13,6 @@ li {
     list-style: none;
 }
 
-/* a {
-    text-decoration: none;
-} */
-
 .header {
     width: 80%;
     margin: 0 auto;
@@ -125,6 +121,12 @@ li {
 
 .main form .user-name, .main form .password {
     margin-bottom: 16px;
+}
+
+.main form #error {
+    font-size: 12px;
+    color: #F00;
+    font-weight: 400;
 }
 
 .main form a {
