@@ -19,17 +19,20 @@
         </div>
     </div>
     <div class = "main">
-        <form action = "./home" method = "post">
+        <form action = "./signin" method = "post">
             <h3>Sign in</h3>
             <div class = "user-name">
                 <label for = "">Email</label>
-                <input type = "text" name = "" id = "" placeholder = "Enter your usrename">
+                <input type = "text" name = "email" id = "" placeholder = "Enter your usrename">
             </div>
-            <div>
+            <div class = "password">
                 <label for = "">Password</label>
-                <input type = "password" name = "" id = "" placeholder = "Enter your password">
+                <input type = "password" name = "password" id = "" placeholder = "Enter your password">
             </div>
-            <a href = "./sign-up">Don’t have an account?</a>
+            <% if (locals.error) { %>
+                <span id = "error"><%= error %></span>
+            <% } %>
+            <a href = "./signup">Don’t have an account?</a>
             <input type="submit" value = "Login">
         </form>
     </div>
