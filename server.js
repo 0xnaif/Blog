@@ -1,13 +1,16 @@
+    import {signup, signin, verifyToken} from "./auth.js"
     import epxress from "express";
     import bodyParser from "body-parser";
+    import cookieParser from "cookie-parser";
     const app = epxress();
     const port = 3000;
 
     app.use(epxress.static("public"));
     app.use(bodyParser.urlencoded({extended : true}));
+    app.use(cookieParser());
     app.set("view engine", "ejs");
 
-    app.get("/", (req, res) => {
+    app.get("/", verifyToken, (req, res) => {
         res.render("home");
     });
 
@@ -16,18 +19,7 @@
     });
 
     app.post("/signup", (req, res) => {
-        const { email, password, confirmPassword } = req.body
-        if (email == "" || password == "" || confirmPassword == "")
-            res.render("sign-up", {error: "Try again, incomplete fields"});
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email) || password.length < 8)
-            res.render("sign-up", {error: "Try again, incorrect email or password"});
-
-        if (password != confirmPassword)
-            res.render("sign-up", {error: "Try again, Confirm password doesn't match"});
-
-        res.redirect("/");
+        signup(req, res);
     });
 
     app.get("/signin", (req, res) => {
@@ -35,21 +27,13 @@
     });
 
     app.post("/signin", (req, res) => {
-        const { email, password } = req.body
-        if (email == "" || password == "")
-            res.render("sign-in", {error: "Try again, incomplete fields"});
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email) || password.length < 8)
-            res.render("sign-in", {error: "Try again, incorrect email or password"});
-
-        res.redirect("/");
+        signin(req, res);
     })
     app.get("/about", (req, res) => {
         res.render("about");
     });
 
-    app.get("/new-post", (req, res) => {
+    app.get("/new-post", verifyToken, (req, res) => {
         res.render("new-post");
     });
 
@@ -57,11 +41,11 @@
         res.redirect("/");
     })
 
-    app.get("/posts", (req, res) => {
+    app.get("/posts", verifyToken, (req, res) => {
         res.render("posts");
     });
 
-    app.get("view-post", (req, res) => {
+    app.get("view-post", verifyToken, (req, res) => {
         res.render("post_view");
     }); 
 
