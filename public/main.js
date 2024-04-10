@@ -101,7 +101,7 @@ if (url.includes("posts")) {
     for (let i =  0; i < postEl.length; i++) {
         postEl[i].addEventListener("click", (event) => {
             if (event.target.closest('.post') && !event.target.closest('.right'))
-                window.location.href = "./post_view";
+                window.location.href = "./view-post";
         })
     }
     

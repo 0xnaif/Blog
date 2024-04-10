@@ -33,7 +33,7 @@ export function signup(req, res) {
     });
 }
 
-export function signin(req, res) {
+export async function signin(req, res) {
     const { email, password } = req.body
     if (email == "" || password == "")
         return res.render("sign-in", {error: "Try again, incomplete fields"});
@@ -47,15 +47,13 @@ export function signin(req, res) {
             return res.status(500).send("Internal server error");
         
         const token = jwt.sign({id : 1, email : email}, secretKey, {expiresIn : "2m"});
-        console.log("hashed passwrd: ", hash);
-        console.log("token", token);
         res.cookie("jwtToken", token, {
             maxAge : 120000,
             httpOnly: true,
             secure: false,
         });
         res.redirect("/");
-    })
+    });
 }
 
 function verify(token) {
@@ -74,7 +72,7 @@ export function verifyToken(req, res, next) {
         const { verified, decoded } = verify(token);
         if (verified) {
             req.decoded = decoded;
-            next();
+            return next();
         }
     }
     res.status(401).send("Unauthorized");

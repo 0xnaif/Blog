@@ -28,7 +28,8 @@
 
     app.post("/signin", (req, res) => {
         signin(req, res);
-    })
+    });
+    
     app.get("/about", (req, res) => {
         res.render("about");
     });
@@ -45,7 +46,7 @@
         res.render("posts");
     });
 
-    app.get("view-post", verifyToken, (req, res) => {
+    app.get("/view-post", verifyToken, (req, res) => {
         res.render("post_view");
     }); 
 
