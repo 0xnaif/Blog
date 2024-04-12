@@ -5,10 +5,10 @@ class DB {
 
     constructor() {
         this.#db = new pg.Client({
-            user : "",
-            host : "",
-            database : "",
-            password : "",
+            user : "postgres",
+            host : "localhost",
+            database : "Blog",
+            password : "NnMm@2019",
             port : 5432,
         });
     }
@@ -18,9 +18,39 @@ class DB {
             await this.#db.connect();
         }
         catch (err) {
-            console.log(`An error occured during DB connection: ${err}`);
             throw err;
         }
+    }
+
+    async searchUser(data) {
+        try {
+            const result = await this.#db.query('SELECT * FROM "user" WHERE "email" = $1;', [data]);
+            return result;
+        }
+        catch (err) {
+
+        }
+    }
+    async addNewUser(data) {
+        try {
+            const result =  await this.#db.query('INSERT INTO "user" (name, email, password) VALUES ($1, $2, $3) RETURNING *;', data);
+            return result.rows[0];
+        }
+        catch (err) {
+            throw err;
+        }
+    }
+
+    async addNewPost() {
+
+    }
+
+    async addNewPost() {
+
+    }
+
+    async addNewPost() {
+
     }
 
     async close() {
@@ -28,7 +58,7 @@ class DB {
             await this.#db.end();
         }
         catch (err) {
-            console.log(`An error occured during DB closing: ${err}`);
+            throw err;
         }
     }
 }
