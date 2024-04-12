@@ -1,3 +1,4 @@
+    import db from "./db.js";
     import {signup, signin, verifyToken} from "./auth.js"
     import epxress from "express";
     import bodyParser from "body-parser";
@@ -19,7 +20,7 @@
     });
 
     app.post("/signup", (req, res) => {
-        signup(req, res);
+        signup(req, res, db);
     });
 
     app.get("/signin", (req, res) => {
@@ -27,7 +28,7 @@
     });
 
     app.post("/signin", (req, res) => {
-        signin(req, res);
+        signin(req, res, db);
     });
     
     app.get("/about", (req, res) => {
@@ -50,6 +51,12 @@
         res.render("post_view");
     }); 
 
-    app.listen(port, () => {
-        console.log(`Server is listening on port ${port}...`);
-    });
+    db.connect()
+        .then(() => {
+            app.listen(port, () => {
+                console.log(`Server is listening on port ${port}...`);
+            });
+        })
+        .catch((err) => {
+            console.error("Error occurring during DB connection: ", err);
+        })
