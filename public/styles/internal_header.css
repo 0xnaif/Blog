@@ -1,0 +1,303 @@
+.header {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFC85E;
+    padding: 14px 32px;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+}
+
+.header h3 {
+    color: #FFF;
+    font-size: 28px;
+    margin: 0;
+}
+
+.header > a {
+    color: #FFF;
+    font-size: 28px;
+    margin: 0;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.header .nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.header .nav .user > div:first-of-type {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #FFF;
+    border-radius: 50%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.header .nav .user div > i {
+    color: #FFA800;
+    font-size: 18px;
+}
+
+.header .nav .user .info {
+    width: 303px;
+    position: absolute;
+    background-color: #FFF;
+    left: 50%;
+    transform: translatex(-50%);
+    top: 190%;
+    z-index: 3;
+    padding: 30px 20px 20px;
+    border-radius: 26px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .nav .user .info > i {
+    position: absolute;
+    top: 10%;
+    right: 6%;
+    color: #000;
+    cursor: pointer;
+}
+
+.header .nav .user .info > i:hover {
+    color: #F00;
+}
+
+.header .nav .user .info .user-icon {
+    background-color: #FFA800;
+    padding: 20px;
+    border-radius: 50%;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.header .nav .user .info .user-icon i {
+    font-size: 22px;
+    color: #FFF;
+}
+
+.header .nav .user .info .back {
+    width: 80%;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin: 0 0 10px;
+    cursor: pointer;
+}
+
+.header .nav .user .info .back i {
+    color: #000;
+}
+
+.header .nav .user .info .options {
+    width: 100%;
+}
+
+.header .nav .user .info .options > div {
+    width: 80%;
+    margin: 0 auto 15px;
+    padding: 10px 5px;
+    border-bottom: 1px solid #ABABAB;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    gap: 35px;
+    cursor: pointer;
+}
+
+.header .nav .user .info .options > div:hover * {
+    color: #FFA800;
+}
+
+.header .nav .user .info .options span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.header .nav .user .info .options i {
+    color: #ABABAB;
+    font-size: 14px;
+}
+
+.header .nav .user .info .email {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    width: 80%;
+    margin-bottom: 25px;
+}
+
+.header .nav .user .info .email label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.header .nav .user .info .email input {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    border: 2px solid #D1D1D1;
+    outline: none;
+    font-size: 12px;
+    color: #000;
+}
+
+.header .nav .user .info .email input::placeholder {
+    opacity: 1;
+}
+
+.header .nav .user .info .password {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    width: 80%;
+    margin-bottom: 25px;
+}
+
+.header .nav .user .info .password label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.header .nav .user .info .password input:first-of-type {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    border: 2px solid #D1D1D1;
+    outline: none;
+    font-size: 12px;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.header .nav .user .info .password input:first-of-type:focus {
+    border-color: #FFA800;
+}
+
+.header .nav .user .info .password input[type = "submit"] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #FFA800;
+    color: #FFF;
+    outline: none;
+}
+
+.header .nav .user .info .password input[type = "submit"]:hover {
+    opacity: 0.6;   
+}
+
+.header .nav .user .info .password i {
+    position: absolute;
+    top: 28%;
+    right: 5%;
+    transform: translateY(20%);
+    cursor: pointer;
+    color: #000;
+    font-size: 14px;
+}
+
+.header .nav .user .info .log-out {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.header .nav .user .info .log-out > p {
+    color: #FFA800;
+    margin: 0;
+}
+
+.header .nav .user .info .log-out i {
+    color: #FFA800;
+}
+
+.header .nav .user .info .log-out:hover > p, .header .nav .user .info .log-out:hover > i {
+    color: #F00;
+}
+
+.header .nav .user .info .log-out .confirm {
+    position: absolute;
+    background-color: #FFF;
+    top: 0;
+    left: 0;
+    width: 303px;
+    z-index: 4;
+    padding: 30px 20px 20px;
+    border-radius: 26px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .nav .user .confirm .confrim-icon {
+    background-color: #FFA800;
+    padding: 15px;
+    display: flex;
+    border-radius: 50%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25);
+}
+
+.header .nav .user .confirm .confrim-icon i {
+    color: #FFF;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.header .nav .user .confirm p {
+    font-size: 20px;
+    font-weight: 700    
+}
+
+.header .nav .user .confirm > div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: inherit;
+}
+
+.header .nav .user .confirm button {
+    width: 80%;
+    border: none;
+    padding: 10px;
+    border-radius: 9px;
+    font-weight: 600;
+}
+
+.header .nav .user .confirm button a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+.header .nav .user .confirm button:first-of-type {
+    background-color: #FFC85E;
+    color: #FFF
+}
+
+.header .nav .user .confirm button:last-of-type {
+    background-color: #FFF;
+    color: #FFC85E;
+    border: 1.6px solid #FFC85E;
+}
+
+.header .nav .user .confirm button:hover {
+    opacity: 0.8;
+}
