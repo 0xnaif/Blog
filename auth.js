@@ -1,10 +1,16 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import crypto from "crypto";
+// import crypto from "crypto";
+import fs from "fs"
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 const saltRounds = 10;
-const secretKey = crypto.randomBytes(64).toString('hex');
-
+// const secretKey = crypto.randomBytes(64).toString('hex');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const secretKeyFilePath = path.resolve(__dirname, 'key.txt');
+const secretKey = fs.readFileSync(secretKeyFilePath, 'utf-8');
 export async function signup(req, res, db) {
     try {
         const { email, password, confirmPassword } = req.body
@@ -30,9 +36,9 @@ export async function signup(req, res, db) {
                 }        
                 const data = ["Test", email, hash];
                 const result = await db.addNewUser(data);
-                const token = jwt.sign({id : result.id, email : email}, secretKey, {expiresIn : "1m"});
+                const token = jwt.sign({id : result.id, email : email}, secretKey, {expiresIn : "30m"});
                 res.cookie("jwtToken", token, {
-                    maxAge : 60000,
+                    maxAge : 1800000,
                     httpOnly: true,
                     secure: false,
                 });
@@ -63,14 +69,14 @@ export async function signin(req, res, db) {
     else {
         const user = result.rows[0];
         const storedPassword = user.password;
-        
+
         bcrypt.compare(password, storedPassword, (err, result) => {
             if (err || !result)
                 return res.render("sign-in", {error: "Try again, incorrect email or password"});
 
-            const token = jwt.sign({id : user.id, email : email}, secretKey, {expiresIn : "2m"});
+            const token = jwt.sign({id : user.id, email : email}, secretKey, {expiresIn : "30m"});
             res.cookie("jwtToken", token, {
-                maxAge : 120000,
+                maxAge : 1800000,
                 httpOnly: true,
                 secure: false,
             });
