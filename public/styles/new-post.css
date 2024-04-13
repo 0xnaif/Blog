@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    background-color: #F6F6F9;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 2;
+}
+
+.main .post {
+    width: 55%;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .post h3 {
+    color: #FFC85E;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.main .post form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .post form div {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.main .post form div:first-of-type {
+    margin-bottom: 15px;
+}
+
+.main .post form textarea {
+    margin-bottom: 15px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 250px;
+}
+
+.main .post form div input, .main .post form div textarea, .main .post form button {
+    border: none;
+    border-radius: 6px;
+    padding: 13px;
+    border: 2px solid #D1D1D1;
+    outline: none;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.main .post form div input:focus, .main .post form div textarea:focus {
+    border-color: #FFA800;
+}
+
+.main .post form input[type = "submit"] {
+    background-color: #FFC85E;
+    color: #FFF;
+    border: 2px solid #FFC85E;
+    margin-bottom: 6px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.main .post form span {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.main .post form #error {
+    color: #F00;
+}
+
+.main .post form #success {
+    color: #0F0;
+}
+
+.main .post form button {
+    background-color: #FFF;
+    color: #FFC85E;
+    border: 2px solid #FFC85E;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.main .post form input[type = "submit"]:hover, .main .post form button:hover {
+    opacity: 0.8;
+}
+
+.footer {
+    width: 100%;
+    background-color: #FFC85E;
+    margin-bottom: 0;
+    position: relative;
+    bottom: 0;
+}
+
+.footer h3 {
+    color: #FFF;
+    font-size: 24px;
+    margin: 18px 20px 0;
+    padding: 10px 10px 0;  
+}
+
+.footer p {
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+}
