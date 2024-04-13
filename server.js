@@ -39,6 +39,38 @@
         res.render("new-post");
     });
 
+    app.post("/new-post", verifyToken, (req, res) => {
+        try {
+            if (req.body.post === "Post") {
+                const title = req.body.title;
+                const content =  req.body.content;
+
+                if (title === "" || content === "") {
+                    const state = "Please complete all empty fields"
+                    return res.render("new-post", {state : state, type : "error"});
+                }
+                const state = "New post added successfully"
+                const userId = req.decoded.id;
+                console.log("User id: ", userId);
+                console.log("Title: ", title);
+                console.log("Content: ", content);
+                // await db.addNewPost([title, content, userId]);
+                res.render("new-post", {state : state, type : "success"});
+                setTimeout(() => {
+                    if (!res.headersSent)
+                        res.redirect("/");
+                }, 2000);
+            }
+            else {
+                res.redirect("/");
+            }
+        }
+        catch (err) {
+            console.error("An error occurred during adding new post: ", err);
+            res.status(500).send("Internal server error")
+        }
+    });
+
     app.post("/home", (req, res) => {
         res.redirect("/");
     })
