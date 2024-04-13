@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "css/all.min.css">
-    <link rel = "stylesheet" href =  "css/normalize.css">
-    <link rel = "stylesheet" href = "css/new-post.css">
-    <link rel = "stylesheet" href = "css/internal_header.css">
+    <link rel = "stylesheet" href = "styles/all.min.css">
+    <link rel = "stylesheet" href =  "styles/normalize.css">
+    <link rel = "stylesheet" href = "styles/new-post.css">
+    <link rel = "stylesheet" href = "styles/internal_header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel = "stylesheet">
@@ -18,18 +18,25 @@
     <div class = "main">
        <div class="post">
         <h3>New Post</h3>
-        <form action = "./home" method = "post">
+        <form action = "./new-post" method = "post">
             <div>
                 <label for = "title">Title</label>
-                <input type="text" name = "title" id = "">
+                <input type="text" name = "title">
             </div>
             <div>
                 <label for = "post">Post</label>
-                <textarea name = "post" cols="30" rows="10"></textarea>
+                <textarea name = "content" cols="30" rows="10"></textarea>
             </div>
+            <% if (locals.state) { %>
+                <% if (type === "error")  {%>
+                    <span id = "error"><%= state %></span>
+                    <% } else { %>
+                        <span id = "success"><%= state %></span>
+                    <% } %>
+                <% } %>
             <div>
-                <input type = "submit" value = "Post">
-                <button type = "submit" id = "backButton">Back</button>
+                <input type = "submit" value = "Post" name = "post">
+                <button type = "submit">Back</button>
             </div>
         </form>
        </div>
