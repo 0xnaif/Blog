@@ -32,6 +32,9 @@ coverage
 # Bower dependency directory (https://bower.io/)
 bower_components
 
+# txt
+*.txt
+
 # node-waf configuration
 .lock-wscript
 
@@ -130,7 +133,3 @@ dist
 .pnp.*
 
 # keys
-
-
-# txt
-.txt
