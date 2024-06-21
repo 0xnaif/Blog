@@ -121,7 +121,7 @@ if (url.includes("posts")) {
     }
 }
 
-if (url.includes("new") || url.includes("view")) {
+if (url.includes("view")) {
     document.getElementById("backButton").addEventListener("click", () => {
         window.history.back();
     });

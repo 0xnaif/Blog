@@ -7,9 +7,9 @@
     <link rel = "stylesheet" href =  "styles/normalize.css">
     <link rel = "stylesheet" href = "styles/sign-up.css">
     <link rel = "stylesheet" href = "styles/external_header.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel = "stylesheet">
+    <link rel = "preconnect" href = "https://fonts.googleapis.com">
+    <link rel = "preconnect" href = "https://fonts.gstatic.com" crossorigin>
+    <link href = "https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel = "stylesheet">
     <title>Sign In</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
             <h3>Sign in</h3>
             <div class = "user-name">
                 <label for = "">Email</label>
-                <input type = "text" name = "email" id = "" placeholder = "Enter your usrename">
+                <input type = "text" name = "email" id = "" placeholder = "Enter your email">
             </div>
             <div class = "password">
                 <label for = "">Password</label>
@@ -28,8 +28,9 @@
             <% if (locals.error) { %>
                 <span id = "error"><%= error %></span>
             <% } %>
+            <a href = "./forgot-password">Forgot password?</a>
             <a href = "./signup">Don’t have an account?</a>
-            <input type="submit" value = "Login">
+            <input type = "submit" value = "Login">
         </form>
     </div>
     <div class = "footer">

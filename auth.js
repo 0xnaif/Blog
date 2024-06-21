@@ -104,5 +104,5 @@ export function verifyToken(req, res, next) {
             return next();
         }
     }
-    res.status(401).send("Unauthorized");
+    res.status(401).redirect("/signin");
 }
