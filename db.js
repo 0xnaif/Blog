@@ -43,21 +43,21 @@ class DB {
 
     async addNewPost(data) {
         try {
-            const result =  await this.#db.query('INSERT INTO "post" (title, content, userid) VALUES ($1, $2, $3) RETURNING *;', data);
-            return result.rows[0];
+            const result = await this.#db.query('INSERT INTO "post" (title, content, userid) VALUES ($1, $2, $3);', data);
+            return result;
         }
         catch (err) {
             throw err;
         }
     }
 
-    async addNewPost() {
+    // async addNewPost() {
 
-    }
+    // }
 
-    async addNewPost() {
+    // async addNewPost() {
 
-    }
+    // }
 
     async close() {
         try {

@@ -16,6 +16,17 @@
     <div id = "overlay"></div>
     <%- include("internal_header.ejs", {showLink : true, showSearch : false})%>
     <div class = "main">
+        <% if (locals.state) { %>
+            <div id = "response" data-state = "<%= locals.state %>" data-type = "<%= locals.type %>">
+                <% if (type === "error")  {%>
+                    <i class="fa-solid fa-circle-check" style="color: #f00;"></i>
+                    <span id = "error"><%= state %></span>
+                <% } else { %>
+                    <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+                    <span id = "success"><%= state %></span>
+                <% } %>
+            </div>
+        <% } %>
        <div class="post">
         <h3>New Post</h3>
         <form action = "./new-post" method = "post">
@@ -27,13 +38,6 @@
                 <label for = "post">Post</label>
                 <textarea name = "content" cols="30" rows="10"></textarea>
             </div>
-            <% if (locals.state) { %>
-                <% if (type === "error")  {%>
-                    <span id = "error"><%= state %></span>
-                    <% } else { %>
-                        <span id = "success"><%= state %></span>
-                    <% } %>
-                <% } %>
             <div>
                 <input type = "submit" value = "Post" name = "post">
                 <button type = "submit">Back</button>
@@ -45,6 +49,6 @@
         <h3>MyBlog</h3>
         <p>Copyright &copy; for 0xnaif</p>
     </div>
-    <script src = "main.js"></script>
+    <script src = "./new-post.js"></script>
 </body>
 </html>
