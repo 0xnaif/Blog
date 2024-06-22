@@ -17,8 +17,7 @@ export async function signup(req, res, db) {
         if (email == "" || password == "" || confirmPassword == "")
             return res.render("sign-up", {error: "Try again, incomplete fields"});
     
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email) || password.length < 8)
+        if (!verifyEmail(email) || password.length < 8)
             return res.render("sign-up", {error: "Try again, incorrect email or password"});
     
         if (password != confirmPassword)
@@ -57,8 +56,7 @@ export async function signin(req, res, db) {
     if (email == "" || password == "")
         return res.render("sign-in", {error: "Try again, incomplete fields"});
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email) || password.length < 8)
+    if (!verifyEmail(email) || password.length < 8)
         return res.render("sign-in", {error: "Try again, incorrect email or password"});
 
 
@@ -83,6 +81,13 @@ export async function signin(req, res, db) {
             res.redirect("/");
         })
     }
+}
+
+export async function verifyEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email))
+        return true;
+    return false;
 }
 
 function verify(token) {
