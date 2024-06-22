@@ -1,5 +1,5 @@
 import db from "./db.js";
-import {signup, signin, verifyToken} from "./auth.js"
+import {signup, signin, verifyToken, verifyEmail} from "./auth.js"
 import epxress from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -41,8 +41,12 @@ app.post("/forgot-password", (req, res) => {
         res.render("forgot_password", { error : "Try again, incomplete fields"})
     }
     else {
-        // Send email code
-        
+        if (!verifyEmail(email))
+            res.render("forgot_password", {error: "Try again, incorrect field"});
+        else {
+            // Send email code
+            res.render("forgot_password", { code : true})
+        }
     }
 })
 
