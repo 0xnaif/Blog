@@ -94,6 +94,19 @@ function hideConfirm(className) {
     confirm_el.setAttribute("style", "display: none");
 }
 
+function changeFocus() {
+    console.log("We are here");
+    let codeInputs = document.querySelectorAll(".main form .code input");
+
+    for (let i = 0; i < codeInputs.length - 1; i++) {
+        if (i === 0) {
+            codeInputs[i + 1].focus();
+        }
+        codeInputs[i].addEventListener("input", () => {
+            codeInputs[i + 1].focus();
+        });
+    }
+}
 const url = document.URL;
 
 if (url.includes("posts")) {
