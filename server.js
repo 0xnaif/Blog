@@ -36,17 +36,56 @@ app.get("/forgot-password", (req, res) => {
 })
 
 app.post("/forgot-password", (req, res) => {
-    const { email } = req.body;
+    const { email } = (req.body);
     if (email == "") {
-        res.render("forgot_password", { error : "Try again, incomplete fields"})
+        res.render("forgot_password", { code : false, error : "Try again, incomplete fields" })
     }
     else {
         if (!verifyEmail(email))
-            res.render("forgot_password", {error: "Try again, incorrect field"});
+            res.render("forgot_password", { code : false, error: "Try again, incorrect field" });
         else {
             // Send email code
-            res.render("forgot_password", { code : true})
+            res.render("forgot_password", { code : true })
         }
+    }
+})
+
+app.post("/verifyCode", (req, res) => {
+    const { one, second, third, forth } = req.body;
+    const code = `${one}${second}${third}${forth}`;
+    if (!code) {
+        res.render("forgot_password", { code : true, codeError : "Try again, incomplete fields" })
+    }
+    else {
+       // check code
+       const flag = true;
+       if (!flag) {
+            res.render("forgot_password", { code : true, codeError : "Try again, incorrect fields" })
+       }
+       else {
+            res.redirect("/new-password")
+       }
+    }
+});
+
+app.get("/new-password", (req, res) => {
+    res.render("new_password");
+});
+
+app.post("/new-password", (req, res) => {
+    const { password, confirmPassword } = req.body;
+    if (password == "" || confirmPassword == "") {
+        res.render("new_password", { error : "Try again, incomplete fields"});
+    }
+    else if (password.length < 8) {
+        res.render("new_password", { error: "Try again, password length  must have at least 8 characters" });
+    }
+    else if (password != confirmPassword) {
+        res.render("new_password", {error: "Try again, confirm password doesn't match"});
+    }
+    else {
+        // change passowrd code
+        res.redirect("/signin")
     }
 })
 
