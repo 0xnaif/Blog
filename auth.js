@@ -83,11 +83,9 @@ export async function signin(req, res, db) {
     }
 }
 
-export async function verifyEmail(email) {
+export function verifyEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailRegex.test(email))
-        return true;
-    return false;
+    return emailRegex.test(email);
 }
 
 function verify(token) {
