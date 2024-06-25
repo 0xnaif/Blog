@@ -67,6 +67,8 @@ li {
 }
 
 .main form #error {
+    width: 200px;
+    text-align: center;
     font-size: 12px;
     color: #F00;
     font-weight: 400;
