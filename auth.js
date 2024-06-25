@@ -83,6 +83,36 @@ export async function signin(req, res, db) {
     }
 }
 
+export async function newPassword(req, res, db) {
+    try {
+        const { password, confirmPassword } = req.body;
+        if (password == "" || confirmPassword == "") {
+            res.render("new_password", { error : "Try again, incomplete fields"});
+        }
+        else if (password.length < 8) {
+            res.render("new_password", { error: "Try again, password length must have at least 8 characters" });
+        }
+        else if (password != confirmPassword) {
+            res.render("new_password", {error: "Try again, confirm password doesn't match"});
+        }
+        else {
+            const email = req.cookies.email;
+            bcrypt.hash(password, saltRounds, async (err, hash) => {
+                if (err) {
+                    console.error("An error occurred during hashing: ", err);
+                    return res.status(500).send("Internal server error");
+                }        
+                await db.changePassword([hash, email]);
+                res.redirect("/signin");
+            });
+        }
+    }
+    catch (err) {
+        console.error("An error occurred during creating a new password: ", err);
+        res.status(500).send("Internal server error")
+    }
+}
+
 export function verifyEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
