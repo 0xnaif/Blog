@@ -1,5 +1,5 @@
 import db from "./db.js";
-import {signup, signin, verifyToken, verifyEmail} from "./auth.js"
+import {signup, signin, newPassword, verifyToken, verifyEmail} from "./auth.js"
 import epxress from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -44,7 +44,12 @@ app.post("/forgot-password", (req, res) => {
         if (!verifyEmail(email))
             res.render("forgot_password", { code : false, error: "Try again, incorrect field" });
         else {
+            // check if email is exist
             // Send email code
+            res.cookie("email", email, {
+                httpOnly : true,
+                secure : false,
+            });
             res.render("forgot_password", { code : true })
         }
     }
@@ -72,21 +77,8 @@ app.get("/new-password", (req, res) => {
     res.render("new_password");
 });
 
-app.post("/new-password", (req, res) => {
-    const { password, confirmPassword } = req.body;
-    if (password == "" || confirmPassword == "") {
-        res.render("new_password", { error : "Try again, incomplete fields"});
-    }
-    else if (password.length < 8) {
-        res.render("new_password", { error: "Try again, password length  must have at least 8 characters" });
-    }
-    else if (password != confirmPassword) {
-        res.render("new_password", {error: "Try again, confirm password doesn't match"});
-    }
-    else {
-        // change passowrd code
-        res.redirect("/signin")
-    }
+app.post("/new-password",async (req, res) => {
+    newPassword(req, res, db);
 })
 
 app.get("/about", (req, res) => {
