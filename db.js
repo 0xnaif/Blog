@@ -51,9 +51,15 @@ class DB {
         }
     }
 
-    // async addNewPost() {
-
-    // }
+    async changePassword(data) {
+        try {
+            const result = await this.#db.query('UPDATE "user" SET password = $1 WHERE email = $2', data);
+            return result;
+        }
+        catch (err) {
+            throw err;
+        }
+    }
 
     // async addNewPost() {
 
