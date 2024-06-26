@@ -113,8 +113,11 @@ if (url.includes("posts")) {
     let postEl = document.querySelectorAll(".main .posts .post");
     for (let i =  0; i < postEl.length; i++) {
         postEl[i].addEventListener("click", (event) => {
-            if (event.target.closest('.post') && !event.target.closest('.right'))
-                window.location.href = "./view-post";
+            if (event.target.closest('.post') && !event.target.closest('.right')) {
+                const postID = postEl[i].id;
+                console.log(postID);
+                window.location.href = "./view-post/" + postID;
+            }
         })
     }
     
