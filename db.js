@@ -61,9 +61,15 @@ class DB {
         }
     }
 
-    // async addNewPost() {
-
-    // }
+    async getUserPosts(data) {
+        try {
+            const result = await this.#db.query('SELECT id, title, content, TO_CHAR(postdate, \'YYYY-MM-DD\') as postdate FROM "post" WHERE userid = $1', data);
+            return result.rows;
+        }
+        catch (err) {
+            throw err;
+        }
+    }
 
     async close() {
         try {
