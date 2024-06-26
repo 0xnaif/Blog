@@ -62,7 +62,6 @@ app.post("/verifyCode", (req, res) => {
         res.render("forgot_password", { code : true, codeError : "Try again, incomplete fields" })
     }
     else {
-       // check code
        const flag = true;
        if (!flag) {
             res.render("forgot_password", { code : true, codeError : "Try again, incorrect fields" })
@@ -119,11 +118,16 @@ app.post("/home", (req, res) => {
     res.redirect("/");
 })
 
-app.get("/posts", verifyToken, (req, res) => {
-    res.render("posts");
+app.get("/posts", verifyToken, async (req, res) => {
+    const userID = req.decoded.id;
+    const posts = await db.getUserPosts([userID]);
+    console.log(posts);
+    res.render("posts", { posts });
 });
 
-app.get("/view-post", verifyToken, (req, res) => {
+app.get("/view-post/:id", verifyToken, (req, res) => {
+    const postID = req.params.id;
+    console.log(postID);
     res.render("post_view");
 }); 
 
