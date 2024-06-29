@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "styles/all.min.css">
-    <link rel = "stylesheet" href =  "styles/normalize.css">
-    <link rel = "stylesheet" href = "styles/post_view.css">
-    <link rel = "stylesheet" href = "styles/internal_header.css">
+    <link rel = "stylesheet" href = "./styles/all.min.css">
+    <link rel = "stylesheet" href =  "./styles/normalize.css">
+    <link rel = "stylesheet" href = "./styles/post_view.css">
+    <link rel = "stylesheet" href = "./styles/internal_header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel = "stylesheet">
@@ -22,47 +22,19 @@
             <i class="fa-solid fa-angle-left"></i>
             <span>Back</span>
         </div>
-        <h4>Here is the title of the post</h4>
+        <h4><%= post.title %></h4>
         <i class="fa-solid fa-share-nodes"></i>
        </div>
        <div class="date">
         <span>Date: </span>
-        <span>06/02/2021</span>
+        <span><%= post.postdate %></span>
        </div>
-       <div class = "post">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat quo nihil obcaecati quidem assumenda ipsam totam nemo rerum consequuntur nostrum. Fuga quia dolorem provident iusto deleniti. Laudantium ipsa nulla delectus.
-       </div>
+       <div class = "post"><%= post.content %></div>
     </div>
     <div class = "footer">
         <h3>MyBlog</h3>
         <p>Copyright &copy; for 0xnaif</p>
     </div>
-    <script src = "main.js"></script>
+    <script src = "./main.js"></script>
 </body>
 </html>
