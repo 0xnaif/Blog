@@ -3,10 +3,21 @@ import {signup, signin, newPassword, verifyToken, verifyEmail} from "./auth.js"
 import epxress from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import { fileURLToPath } from 'url';
+import path from "path";
 const app = epxress();
 const port = 3000;
 
 app.use(epxress.static("public"));
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// app.use(epxress.static(path.join(__dirname, 'public')));
+// app.use(epxress.static(__dirname, {
+//     index: false, 
+//     immutable: true, 
+//     cacheControl: true,
+//     maxAge: "30d"
+// }));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(cookieParser());
 app.set("view engine", "ejs");
@@ -121,14 +132,13 @@ app.post("/home", (req, res) => {
 app.get("/posts", verifyToken, async (req, res) => {
     const userID = req.decoded.id;
     const posts = await db.getUserPosts([userID]);
-    console.log(posts);
     res.render("posts", { posts });
 });
 
-app.get("/view-post/:id", verifyToken, (req, res) => {
-    const postID = req.params.id;
-    console.log(postID);
-    res.render("post_view");
+app.get("/view-post/", verifyToken, async (req, res) => {
+    const postID = req.query.id;
+    const post = await db.getPostInfo([postID]);
+    res.render("post_view", { post });
 }); 
 
 db.connect()
