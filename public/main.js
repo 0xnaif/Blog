@@ -111,15 +111,14 @@ const url = document.URL;
 
 if (url.includes("posts")) {
     let postEl = document.querySelectorAll(".main .posts .post");
-    for (let i =  0; i < postEl.length; i++) {
-        postEl[i].addEventListener("click", (event) => {
+    postEl.forEach(post => {
+        post.addEventListener("click", (event) => {
             if (event.target.closest('.post') && !event.target.closest('.right')) {
-                const postID = postEl[i].id;
-                console.log(postID);
-                window.location.href = "./view-post/" + postID;
+                const postID = post.id;
+                window.location.href = `/view-post?id=${postID}`;
             }
-        })
-    }
+        });
+    });
     
     let deleteIcns = document.querySelectorAll(".main .posts .post .right .fa-trash-can");
     for (let i =  0; i < deleteIcns.length; i++) {
