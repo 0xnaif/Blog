@@ -17,7 +17,7 @@
     <%- include("internal_header.ejs", {showLink : true, showSearch : true})%>
     <div class = "main">
         <h3>Posts</h3>
-        <% if (locals.posts) { %>
+        <% if (posts.length > 0) { %>
             <div class = "posts">
                 <% for (let i = 0; i < posts.length; i++) { %>
                     <div id = <%= posts[i].id %> class = "post">
@@ -39,6 +39,7 @@
                 <% } %>
            </div>
         <% } else { %>
+            <h4>No posts yet</h4>
         <% } %>
     </div>
     <div class = "footer">
