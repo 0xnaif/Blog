@@ -139,7 +139,24 @@ app.get("/view-post/", verifyToken, async (req, res) => {
     const postID = req.query.id;
     const post = await db.getPostInfo([postID]);
     res.render("post_view", { post });
-}); 
+});
+
+app.delete("/post/:id", verifyToken, async (req, res) => {
+    try {
+        const postID = req.params.id;
+        const result = await db.deletePost([postID]);
+        if (result.rowCount > 0) {
+            res.status(200).json({ message : "Post deleted successfully"});
+        }
+        else {
+            res.status(404).json({ message : "Post not found"});
+        }
+    }
+    catch (err) {
+        console.error("An error occured during deleting post:\n", err);
+        res.status(500).json({ message : "Internal server error"});
+    }
+})
 
 db.connect()
     .then(() => {
