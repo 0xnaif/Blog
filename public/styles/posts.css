@@ -64,6 +64,11 @@ body {
     margin-bottom: 20px;
 }
 
+.main h4 {
+    font-size: 24px;
+    margin-top: 80px;
+}
+
 .main .posts {
     width: 50%;
     margin: 30px auto;
