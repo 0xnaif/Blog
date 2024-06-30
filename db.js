@@ -81,6 +81,16 @@ class DB {
         }
     }
 
+    async deletePost(data) {
+        try {
+            const result = this.#db.query('DELETE FROM "post" WHERE id = $1', data);
+            return result;
+        }
+        catch (err) {
+            throw err;
+        }
+    }
+
     async close() {
         try {
             await this.#db.end();
