@@ -122,9 +122,26 @@ if (url.includes("posts")) {
     
     let deleteIcns = document.querySelectorAll(".main .posts .post .right .fa-trash-can");
     for (let i =  0; i < deleteIcns.length; i++) {
-        deleteIcns[i].addEventListener("click", () => {
+        deleteIcns[i].addEventListener("click", async () => {
             var postEl = deleteIcns[i].parentElement.parentElement;
-            postEl.remove();
+            const postID = postEl.id;
+            if (confirm("Are you sure to delete this post?")) {
+                const res = await fetch(`post/${postID}`, {
+                    method : "DELETE",
+                    headers : {
+                        "Content-Type" : "application/json",
+                    }
+                });
+                if (res.ok) {
+                    const response = await res.json()
+                    alert(response.message);
+                    window.location.reload();
+                }
+                else {
+                    const response = await res.json()
+                    alert(response.message);
+                }
+            }
         })
     }
 
