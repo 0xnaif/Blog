@@ -32,9 +32,20 @@
                         </div>
                         <div class="right">
                             <i class="fa-regular fa-pen-to-square"></i>
-                            <i class = "fa-regular fa-trash-can"></i>
+                            <i class = "fa-regular fa-trash-can" onclick = "showDeleteConfirm('<%= posts[i].id %>')"></i>
                             <i class="fa-solid fa-share-nodes"></i>
                         </div>
+                    </div>
+                    <div class = "delete-confirm">
+                        <div class = "confrim-icon">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </div>
+                        <p>Are you sure to logout?</p>
+                        <div>
+                            <button type = "submit" id = "confirm-yes">Yes</button>
+                            <button type = "submit" onclick = "hideDeleteConfirm('delete-confirm')">No</button>
+                        </div>
+                        <input type="hidden" id = "to-delete">
                     </div>
                 <% } %>
            </div>
