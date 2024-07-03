@@ -86,12 +86,26 @@ function hideUserProf() {
 
 function showConfirm(className) {
     let confirm_el = document.getElementsByClassName(className)[0];
+    console.log(confirm_el);
     confirm_el.setAttribute("style", "display: flex");
 }
 
 function hideConfirm(className) {
     let confirm_el = document.getElementsByClassName(className)[0];
     confirm_el.setAttribute("style", "display: none");
+}
+let postID;
+function showDeleteConfirm(postID) {
+    document.getElementById("to-delete").value = postID;
+    document.getElementsByClassName("delete-confirm")[0].style.display = "flex";;
+    document.getElementById("overlay").style.display = "flex";
+}
+
+function hideDeleteConfirm(className) {
+    let confirm_el = document.getElementsByClassName(className)[0];
+    let overlay = document.getElementById("overlay");
+    confirm_el.style.display = "none";
+    overlay.style.display = "none";
 }
 
 function changeFocus() {
@@ -121,11 +135,10 @@ if (url.includes("posts")) {
     });
     
     let deleteIcns = document.querySelectorAll(".main .posts .post .right .fa-trash-can");
-    for (let i =  0; i < deleteIcns.length; i++) {
-        deleteIcns[i].addEventListener("click", async () => {
-            var postEl = deleteIcns[i].parentElement.parentElement;
-            const postID = postEl.id;
-            if (confirm("Are you sure to delete this post?")) {
+    document.getElementById("confirm-yes").addEventListener("click", async () => {
+        const postID = document.getElementById("to-delete").value;
+        if (postID) {
+            try {
                 const res = await fetch(`post/${postID}`, {
                     method : "DELETE",
                     headers : {
@@ -134,7 +147,6 @@ if (url.includes("posts")) {
                 });
                 if (res.ok) {
                     const response = await res.json()
-                    alert(response.message);
                     window.location.reload();
                 }
                 else {
@@ -142,8 +154,14 @@ if (url.includes("posts")) {
                     alert(response.message);
                 }
             }
-        })
-    }
+            catch (err) {
+                alert('Error deleting post');
+            }
+            finally {
+                hideDeleteConfirm("delete-confirm");
+            }
+        }
+    })
 
     let editIcns = document.querySelectorAll(".main .posts .post .right .fa-pen-to-square");
     for (let i =  0; i < editIcns.length; i++) {
