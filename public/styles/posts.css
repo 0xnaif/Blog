@@ -135,10 +135,79 @@ body {
 
 .main .posts .post .right i {
     font-size: 18px;
+    position: relative;
 }
 
 .main .posts .post .right i:hover {
     color: #F00;
+}
+
+.main .posts .delete-confirm {
+    position: absolute;
+    background-color: #FFF;
+    bottom: 46%;
+    width: 303px;
+    z-index: 4;
+    padding: 30px 20px 20px;
+    border-radius: 26px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .posts .delete-confirm .confrim-icon {
+    background-color: #FFA800;
+    padding: 15px;
+    display: flex;
+    border-radius: 50%;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25);
+}
+
+.main .posts .delete-confirm .confrim-icon i {
+    color: #FFF;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.main .posts .delete-confirm > p {
+    font-size: 20px;
+    font-weight: 700 !important;
+}
+
+.main .posts .delete-confirm > div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: inherit;
+}
+
+.main .posts .delete-confirm button {
+    width: 80%;
+    border: none;
+    padding: 10px;
+    border-radius: 9px;
+    font-weight: 600;
+}
+
+.main .posts .delete-confirm button a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+.main .posts .delete-confirm button:first-of-type {
+    background-color: #FFC85E;
+    color: #FFF
+}
+
+.main .posts .delete-confirm button:last-of-type {
+    background-color: #FFF;
+    color: #FFC85E;
+    border: 1.6px solid #FFC85E;
+}
+
+.main .posts .delete-confirm button:hover {
+    opacity: 0.8;
 }
 
 .footer {
