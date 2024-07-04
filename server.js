@@ -156,7 +156,16 @@ app.delete("/post/:id", verifyToken, async (req, res) => {
         console.error("An error occured during deleting post:\n", err);
         res.status(500).json({ message : "Internal server error"});
     }
-})
+});
+
+app.put("/edit-post", async (req, res) => {
+    try {
+
+    }
+    catch (err) {
+
+    }
+});
 
 db.connect()
     .then(() => {
