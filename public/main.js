@@ -146,12 +146,28 @@ if (url.includes("posts")) {
                     }
                 });
                 if (res.ok) {
-                    const response = await res.json()
-                    window.location.reload();
+                    const response = await res.json();
+                    document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#63E6BE");
+                    document.getElementById("content").style.color = "#63E6BE";
+                    document.querySelector(".main #response i").style.color = "#63E6BE";
+                    document.getElementById("response").style.display = "flex";
+                    document.getElementById("content").innerText = response.message;
+                    setTimeout(() => {
+                        document.getElementById("response").style.display = "none";
+                        window.location.reload();
+                    }, 600);
                 }
                 else {
                     const response = await res.json()
-                    alert(response.message);
+                    document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#F00");
+                    document.getElementById("content").style.color = "#F00";
+                    document.querySelector(".main #response i").style.color = "#F00";
+                    document.getElementById("response").style.display = "flex";
+                    document.getElementById("content").innerText = response.message;
+                    setTimeout(() => {
+                        document.getElementById("response").style.display = "none";
+                        window.location.reload();
+                    }, 600);
                 }
             }
             catch (err) {

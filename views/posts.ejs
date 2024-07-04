@@ -40,12 +40,16 @@
                         <div class = "confrim-icon">
                             <i class="fa-regular fa-circle-question"></i>
                         </div>
-                        <p>Are you sure to logout?</p>
+                        <p>Are you sure to delete this post?</p>
                         <div>
                             <button type = "submit" id = "confirm-yes">Yes</button>
                             <button type = "submit" onclick = "hideDeleteConfirm('delete-confirm')">No</button>
                         </div>
                         <input type="hidden" id = "to-delete">
+                    </div>
+                    <div id = "response">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span id = "content">Post deleted successfully</span>
                     </div>
                 <% } %>
            </div>

@@ -76,6 +76,62 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    position: relative;
+}
+
+.main #response {
+    --beforeBackgroundColor: #63E6BE;
+    position: absolute;
+    right: -20%;
+    top: -140%;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    padding: 15px 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: fit-content;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main #response::before {
+    content: "";
+    position: absolute;
+    height: 2.5px;
+    width: 0%;
+    top: 97%;
+    left: 1.5%;
+    background-color: var(--beforeBackgroundColor);
+    animation-name: response;
+    animation-duration: 300ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes response {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 97%;
+    }
+}
+
+.main #response i {
+    font-size: 22px;
+}
+
+.main #response span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.main #response #content {
+    color: #63E6BE;
 }
 
 .main .posts .post {
@@ -145,7 +201,7 @@ body {
 .main .posts .delete-confirm {
     position: absolute;
     background-color: #FFF;
-    bottom: 46%;
+    top: -90%;
     width: 303px;
     z-index: 4;
     padding: 30px 20px 20px;
@@ -171,7 +227,8 @@ body {
 
 .main .posts .delete-confirm > p {
     font-size: 20px;
-    font-weight: 700 !important;
+    font-weight: 700;
+    text-align: center;
 }
 
 .main .posts .delete-confirm > div:last-of-type {
