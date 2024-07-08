@@ -158,7 +158,7 @@ if (url.includes("posts")) {
                     }, 600);
                 }
                 else {
-                    const response = await res.json()
+                    const response = await res.json(); 
                     document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#F00");
                     document.getElementById("content").style.color = "#F00";
                     document.querySelector(".main #response i").style.color = "#F00";
@@ -182,7 +182,9 @@ if (url.includes("posts")) {
     let editIcns = document.querySelectorAll(".main .posts .post .right .fa-pen-to-square");
     for (let i =  0; i < editIcns.length; i++) {
         editIcns[i].addEventListener("click", () => {
-            window.location.href = "./new-post";
+            const postID =  editIcns[i].parentElement.parentElement.id;
+            console.log(postID);
+            window.location.href = `./edit-post?id=${postID}`;
         })
     }
 }
