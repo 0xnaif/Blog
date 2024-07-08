@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "styles/all.min.css">
     <link rel = "stylesheet" href =  "styles/normalize.css">
-    <link rel = "stylesheet" href = "styles/new-post.css">
+    <link rel = "stylesheet" href = "styles/edit_post.css">
     <link rel = "stylesheet" href = "styles/internal_header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,41 +16,35 @@
     <div id = "overlay"></div>
     <%- include("internal_header.ejs", {showLink : true, showSearch : false})%>
     <div class = "main">
-        <% if (locals.state) { %>
-            <div id = "response" data-state = "<%= locals.state %>" data-type = "<%= locals.type %>">
-                <% if (type === "error")  {%>
-                    <i class="fa-solid fa-circle-check" style="color: #f00;"></i>
-                    <span id = "error"><%= state %></span>
-                <% } else { %>
-                    <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
-                    <span id = "success"><%= state %></span>
-                <% } %>
-            </div>
+        <% if (locals.post) { %>
+            <div class = "post">
+                <h3>New Post</h3>
+                <form id = "edit-form">
+                    <div>
+                        <label for = "title">Title</label>
+                        <input type="text" name = "title" value = '<%= post.title %>'>
+                    </div>
+                    <div>
+                        <label for = "post">Post</label>
+                        <textarea name = "content" cols="30" rows="10"><%= post.content %></textarea>
+                    </div>
+                    <div>
+                        <input type = "submit" value = "Edit" name = "post">
+                        <button type = "submit">Back</button>
+                    </div>
+                </form>
+           </div>
         <% } %>
-        <% if (locals.post) {%>
-       <div class="post">
-        <h3>New Post</h3>
-        <form action = "./edit-post" method = "post">
-            <div>
-                <label for = "title"><%= post.title %></label>
-                <input type="text" name = "title">
-            </div>
-            <div>
-                <label for = "post">Post</label>
-                <textarea name = "content" cols="30" rows="10"><%= post.content %></textarea>
-            </div>
-            <div>
-                <input type = "submit" value = "Edit" name = "post">
-                <button type = "submit">Back</button>
-            </div>
-        </form>
-       </div>
-       <% } %>
+       <div id = "response">
+            <i class = "fa-solid fa-circle-check"></i>
+            <span id = "content"></span>
+        </div>
     </div>
     <div class = "footer">
         <h3>MyBlog</h3>
         <p>Copyright &copy; for 0xnaif</p>
     </div>
-    <script src = "./new-post.js"></script>
+    <script src = "./main.js"></script>
+    <script src = "./edit-post.js"></script>
 </body>
 </html>
