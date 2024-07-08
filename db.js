@@ -73,8 +73,18 @@ class DB {
 
     async getPostInfo(data) {
         try {
-            const result = await this.#db.query('SELECT title, content, TO_CHAR(postdate, \'YYYY-MM-DD\') as postdate FROM "post" WHERE id = $1', data);
+            const result = await this.#db.query('SELECT id, title, content, TO_CHAR(postdate, \'YYYY-MM-DD\') as postdate FROM "post" WHERE id = $1', data);
             return result.rows[0];
+        }
+        catch (err) {
+            throw err;
+        }
+    }
+
+    async editPost(data) {
+        try {
+            const result = this.#db.query('UPDATE "post" SET title = $1, content = $2 WHERE id = $3', data);
+            return result;
         }
         catch (err) {
             throw err;
