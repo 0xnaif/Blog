@@ -9,16 +9,8 @@ const app = epxress();
 const port = 3000;
 
 app.use(epxress.static("public"));
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-// app.use(epxress.static(path.join(__dirname, 'public')));
-// app.use(epxress.static(__dirname, {
-//     index: false, 
-//     immutable: true, 
-//     cacheControl: true,
-//     maxAge: "30d"
-// }));
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json())
 app.use(cookieParser());
 app.set("view engine", "ejs");
 
@@ -158,12 +150,34 @@ app.delete("/post/:id", verifyToken, async (req, res) => {
     }
 });
 
-app.put("/edit-post", async (req, res) => {
+app.get("/edit-post/", verifyToken, async (req, res) => {
     try {
-
+        const postID = req.query.id;
+        const post = await db.getPostInfo([postID]);
+        console.log(post);
+        res.render("edit_post", { post });
     }
     catch (err) {
+        console.error("An error occurred during viewing post:\n", err);
+        res.status(500).json({ message : "Internal server error"});
+    }
+});
 
+app.put("/edit-post", verifyToken, async (req, res) => {
+    try {
+        const postID = req.query.id;
+        const { title, content } = req.body;
+        const result = await db.editPost([title, content, postID]);
+        if (result.rowCount > 0) {
+            res.status(200).json({ message : "Post edited successfully"});
+        }
+        else {
+            res.status(400).json({ message : "Post was not edited"});
+        }
+    }
+    catch (err) {
+        console.error("An error occurred during editing post:\n", err);
+        res.status(500).json({ message : "Internal server error"});
     }
 });
 
