@@ -94,7 +94,7 @@ function hideConfirm(className) {
     let confirm_el = document.getElementsByClassName(className)[0];
     confirm_el.setAttribute("style", "display: none");
 }
-let postID;
+
 function showDeleteConfirm(postID) {
     document.getElementById("to-delete").value = postID;
     document.getElementsByClassName("delete-confirm")[0].style.display = "flex";;
@@ -183,7 +183,6 @@ if (url.includes("posts")) {
     for (let i =  0; i < editIcns.length; i++) {
         editIcns[i].addEventListener("click", () => {
             const postID =  editIcns[i].parentElement.parentElement.id;
-            console.log(postID);
             window.location.href = `./edit-post?id=${postID}`;
         })
     }
