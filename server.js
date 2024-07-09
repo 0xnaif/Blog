@@ -154,7 +154,6 @@ app.get("/edit-post/", verifyToken, async (req, res) => {
     try {
         const postID = req.query.id;
         const post = await db.getPostInfo([postID]);
-        console.log(post);
         res.render("edit_post", { post });
     }
     catch (err) {
@@ -167,7 +166,9 @@ app.put("/edit-post", verifyToken, async (req, res) => {
     try {
         const postID = req.query.id;
         const { title, content } = req.body;
-        const result = await db.editPost([title, content, postID]);
+        const currectDate = new Date();
+        const formattedDate = currectDate.toISOString().split('T')[0];
+        const result = await db.editPost([title, content, formattedDate, postID]);
         if (result.rowCount > 0) {
             res.status(200).json({ message : "Post edited successfully"});
         }
