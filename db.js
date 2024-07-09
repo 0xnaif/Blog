@@ -83,7 +83,7 @@ class DB {
 
     async editPost(data) {
         try {
-            const result = this.#db.query('UPDATE "post" SET title = $1, content = $2 WHERE id = $3', data);
+            const result = this.#db.query('UPDATE "post" SET title = $1, content = $2, postdate = $3 WHERE id = $4', data);
             return result;
         }
         catch (err) {
