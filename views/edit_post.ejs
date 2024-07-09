@@ -17,7 +17,7 @@
     <%- include("internal_header.ejs", {showLink : true, showSearch : false})%>
     <div class = "main">
         <% if (locals.post) { %>
-            <div class = "post">
+            <div class = "post" id = '<%= post.id %>'>
                 <h3>New Post</h3>
                 <form id = "edit-form">
                     <div>
@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <input type = "submit" value = "Edit" name = "post">
-                        <button type = "submit">Back</button>
+                        <button id = "backButton">Back</button>
                     </div>
                 </form>
            </div>
