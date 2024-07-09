@@ -27,8 +27,8 @@ body {
 .main #response {
     --beforeBackgroundColor: #63E6BE;
     position: absolute;
-    right: -20%;
-    top: -140%;
+    right: 12%;
+    top: 2%;
     display: none;
     flex-direction: row;
     justify-content: center;
