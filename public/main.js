@@ -134,7 +134,7 @@ if (url.includes("posts")) {
         });
     });
     
-    let deleteIcns = document.querySelectorAll(".main .posts .post .right .fa-trash-can");
+    // let deleteIcns = document.querySelectorAll(".main .posts .post .right .fa-trash-can");
     document.getElementById("confirm-yes").addEventListener("click", async () => {
         const postID = document.getElementById("to-delete").value;
         if (postID) {
@@ -185,6 +185,29 @@ if (url.includes("posts")) {
             const postID =  editIcns[i].parentElement.parentElement.id;
             window.location.href = `./edit-post?id=${postID}`;
         })
+    }
+
+    let shareIcns = document.querySelectorAll(".main .posts .post .right .fa-share-nodes");
+    for (let i = 0; i < shareIcns.length; i++) {
+        shareIcns[i].addEventListener("click", () => {
+            const title = shareIcns[i].dataset.title;
+            const content = shareIcns[i].dataset.content;
+            if (navigator.share) {
+                navigator.share({
+                    title : title,
+                    content : content,
+                })
+                .then(() => {
+                    console.log("Thanks for sharing!");
+                })
+                .catch((err) => {
+                    console.err("Error sharing: ", err);
+                })
+            }
+            else {
+                alert("Share not supported on this browser!");
+            }
+        });
     }
 }
 
