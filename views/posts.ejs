@@ -31,9 +31,9 @@
                             </div>
                         </div>
                         <div class="right">
-                            <i class="fa-regular fa-pen-to-square"></i>
+                            <i class = "fa-regular fa-pen-to-square"></i>
                             <i class = "fa-regular fa-trash-can" onclick = "showDeleteConfirm('<%= posts[i].id %>')"></i>
-                            <i class="fa-solid fa-share-nodes"></i>
+                            <i class = "fa-solid fa-share-nodes" data-title = '<%= posts[i].title %>' data-content = '<%= posts[i].content %>'></i>
                         </div>
                     </div>
                     <div class = "delete-confirm">
