@@ -93,6 +93,7 @@ function showConfirm(className) {
 function hideConfirm(className) {
     let confirm_el = document.getElementsByClassName(className)[0];
     confirm_el.setAttribute("style", "display: none");
+    document.getElementById("overlay").style.display = 'none';
 }
 
 function showDeleteConfirm(postID) {
@@ -134,7 +135,6 @@ if (url.includes("posts")) {
         });
     });
     
-    // let deleteIcns = document.querySelectorAll(".main .posts .post .right .fa-trash-can");
     document.getElementById("confirm-yes").addEventListener("click", async () => {
         const postID = document.getElementById("to-delete").value;
         if (postID) {
@@ -192,21 +192,27 @@ if (url.includes("posts")) {
         shareIcns[i].addEventListener("click", () => {
             const title = shareIcns[i].dataset.title;
             const content = shareIcns[i].dataset.content;
-            if (navigator.share) {
-                navigator.share({
-                    title : title,
-                    content : content,
-                })
-                .then(() => {
-                    console.log("Thanks for sharing!");
-                })
-                .catch((err) => {
-                    console.err("Error sharing: ", err);
-                })
-            }
-            else {
-                alert("Share not supported on this browser!");
-            }
+
+            const encodedTitle = encodeURIComponent(title);
+            const encodedContent = encodeURIComponent(content);
+
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}%20-%20${encodedContent}`;
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?quote=${encodedTitle}%20-%20${encodedContent}`;
+            const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&summary=${encodedTitle}%20-%20${encodedContent}`;
+            const telegramUrl = `https://t.me/share/url?text=${encodedTitle}%20-%20${encodedContent}`;
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedContent}`;
+            const smsUrl = `sms:?body=${encodedTitle}%20-%20${encodedContent}`;
+
+            document.getElementById("whatsapp").href = whatsappUrl;
+            document.getElementById("copyLink").href = twitterUrl;
+            document.getElementById("message").href = smsUrl;
+            document.getElementById("telegram").href = telegramUrl;
+            document.getElementById("twitter").href = twitterUrl;
+            document.getElementById("linkedIn").href = linkedinUrl;
+
+            document.getElementById("overlay").style.display = 'block';
+            document.getElementById('shareForm').style.display = 'flex';
+
         });
     }
 }
