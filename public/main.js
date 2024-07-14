@@ -91,9 +91,7 @@ function showConfirm(className) {
 }
 
 function hideConfirm(className) {
-    let confirm_el = document.getElementsByClassName(className)[0];
-    confirm_el.setAttribute("style", "display: none");
-    document.getElementById("overlay").style.display = 'none';
+    document.getElementsByClassName(className)[0].style.display = 'none';
 }
 
 function showDeleteConfirm(postID) {
@@ -109,6 +107,11 @@ function hideDeleteConfirm(className) {
     overlay.style.display = "none";
 }
 
+function hideShareConfirm(className) {
+    document.getElementsByClassName(className)[0].style.display = 'none';
+    document.getElementById("overlay").style.display = 'none';
+}
+
 function changeFocus() {
     console.log("We are here");
     let codeInputs = document.querySelectorAll(".main form .code input");
@@ -122,6 +125,7 @@ function changeFocus() {
         });
     }
 }
+
 const url = document.URL;
 
 if (url.includes("posts")) {
@@ -193,15 +197,16 @@ if (url.includes("posts")) {
             const title = shareIcns[i].dataset.title;
             const content = shareIcns[i].dataset.content;
 
-            const encodedTitle = encodeURIComponent(title);
-            const encodedContent = encodeURIComponent(content);
+            const formattedTitle = encodeURIComponent(`Title: ${title}`);
+            const formattedContent = encodeURIComponent(`Content: ${content}`);
+            const formattedText = `${formattedTitle}%0A${formattedContent}`;
 
-            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}%20-%20${encodedContent}`;
-            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?quote=${encodedTitle}%20-%20${encodedContent}`;
-            const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&summary=${encodedTitle}%20-%20${encodedContent}`;
-            const telegramUrl = `https://t.me/share/url?text=${encodedTitle}%20-%20${encodedContent}`;
-            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedContent}`;
-            const smsUrl = `sms:?body=${encodedTitle}%20-%20${encodedContent}`;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${formattedText}`;
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?quote=${formattedText}`;
+            const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&summary=${formattedText}`;
+            const telegramUrl = `https://t.me/share/url?text=${formattedText}`;
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${formattedText}`;
+            const smsUrl = `sms:?body=${formattedText}`;
 
             document.getElementById("whatsapp").href = whatsappUrl;
             document.getElementById("copyLink").href = twitterUrl;
@@ -217,8 +222,37 @@ if (url.includes("posts")) {
     }
 }
 
-if (url.includes("view")) {
+if (url.includes("view")) { 
     document.getElementById("backButton").addEventListener("click", () => {
         window.history.back();
     });
+
+    let shareIcns = document.querySelectorAll(".main .fa-share-nodes");
+    for (let i = 0; i < shareIcns.length; i++) {
+        shareIcns[i].addEventListener("click", () => {
+            const title = shareIcns[i].dataset.title;
+            const content = shareIcns[i].dataset.content;
+            
+            const formattedTitle = encodeURIComponent(`Title: ${title}`);
+            const formattedContent = encodeURIComponent(`Content: ${content}`);
+            const formattedText = `${formattedTitle}%0A${formattedContent}`;
+
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${formattedText}`;
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?quote=${formattedText}`;
+            const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&summary=${formattedText}`;
+            const telegramUrl = `https://t.me/share/url?text=${formattedText}`;
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${formattedText}`;
+            const smsUrl = `sms:?body=${formattedText}`;
+
+            document.getElementById("whatsapp").href = whatsappUrl;
+            document.getElementById("copyLink").href = twitterUrl;
+            document.getElementById("message").href = smsUrl;
+            document.getElementById("telegram").href = telegramUrl;
+            document.getElementById("twitter").href = twitterUrl;
+            document.getElementById("linkedIn").href = linkedinUrl;
+
+            document.getElementById("overlay").style.display = 'block';
+            document.getElementById('shareForm').style.display = 'flex';
+        });
+    }
 }
