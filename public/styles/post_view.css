@@ -75,6 +75,60 @@ body {
     line-height: 150%;
 }
 
+.main .share {
+    background-color: #FFF;
+    display: none;
+    flex-direction: column;
+    border-radius: 24px;
+    padding: 10px 20px;
+    position: absolute;
+    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25);
+    z-index: 20;
+}
+
+.main .share .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 25px;
+}
+
+.main .share .head h4 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.main .share .head i:hover {
+    color: #F00;
+}
+
+.main .share .options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.main .share .option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+}
+.main .share .option .icon {
+    display: flex;
+    justify-content: center;
+}
+
+.main .share .option a {
+    font-size: 34px;
+    margin-bottom: 5px;
+}
+
+.main .share .option p {
+    font-size: 12px;
+    margin: 0 0 10px;
+}
+
 .footer {
     width: 100%;
     background-color: #FFC85E;
