@@ -22,7 +22,7 @@ function showEmail(element) {
 
 function showPassword(element) {
     let back_el = document.getElementsByClassName("back")[0];
-    let password_info = document.getElementsByClassName("password")[0];
+    let password_info = document.getElementsByClassName("password");
     let email_el = document.getElementsByClassName("email-choice")[0];
     let password_el = element;
     let logout_el = document.getElementsByClassName("log-out")[0];
@@ -31,7 +31,9 @@ function showPassword(element) {
     email_el.setAttribute("style", "display: none");
     password_el.setAttribute("style", "display: none");
     logout_el.setAttribute("style", "display: none");
-    password_info.setAttribute("style", "display: flex");
+    for (let passwordField of password_info) {
+        passwordField.setAttribute("style", "display: flex");
+    }
 }
 
 function back() {
@@ -96,6 +98,7 @@ function hideConfirm(className) {
 
 function showDeleteConfirm(postID) {
     document.getElementById("to-delete").value = postID;
+    console.log(postID);
     document.getElementsByClassName("delete-confirm")[0].style.display = "flex";;
     document.getElementById("overlay").style.display = "flex";
 }
@@ -254,5 +257,18 @@ if (url.includes("view")) {
             document.getElementById("overlay").style.display = 'block';
             document.getElementById('shareForm').style.display = 'flex';
         });
+    }
+}
+
+function searchPost() {
+    const searchValue = document.getElementById("searchPost").value.toLowerCase();
+    const posts = document.getElementsByClassName("post");
+
+    for (let post of posts) {
+        const title = post.getElementsByClassName("title")[0].innerText.toLowerCase();
+        if (title.includes(searchValue)) {
+            post.scrollIntoView({ behavior: 'smooth' });
+            break;
+        }
     }
 }
