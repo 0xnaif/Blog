@@ -162,12 +162,18 @@
 }
 
 .header .nav .user .info .password {
-    position: relative;
     display: none;
     flex-direction: column;
     gap: 4px;
     width: 80%;
-    margin-bottom: 25px;
+    margin-bottom: 0;
+}
+
+.header .nav .user .info .password .pass {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .header .nav .user .info .password label {
@@ -175,7 +181,8 @@
     font-weight: 400;
 }
 
-.header .nav .user .info .password input:first-of-type {
+.header .nav .user .info .password input {
+    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -186,26 +193,28 @@
     margin-bottom: 5px;
 }
 
-.header .nav .user .info .password input:first-of-type:focus {
+.header .nav .user .info .password input:focus {
     border-color: #FFA800;
 }
 
 .header .nav .user .info .password input[type = "submit"] {
-    padding: 10px;
+    padding: 12px;
+    margin-top: 10px;
     border: none;
     border-radius: 4px;
     background-color: #FFA800;
     color: #FFF;
     outline: none;
+    font-size: 14px;
 }
 
 .header .nav .user .info .password input[type = "submit"]:hover {
     opacity: 0.6;   
 }
 
-.header .nav .user .info .password i {
+.header .nav .user .info .password .pass i {
     position: absolute;
-    top: 28%;
+    top: 45%;
     right: 5%;
     transform: translateY(20%);
     cursor: pointer;
