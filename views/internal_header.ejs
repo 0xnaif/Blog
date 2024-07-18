@@ -42,18 +42,18 @@
                 <div class = "password">
                     <div class = "pass current">
                         <label for = "">Current Passowrd</label>
-                        <input type = "password" name = "currentPassword" id = "password">
-                        <i class = "toggle-password fa-regular fa-eye-slash" onclick = "togglePasswordVisibility()"></i>
+                        <input type = "password" name = "currentPassword" id = "currentPassword">
+                        <i id = "currentPasswordIcon" class = "toggle-password fa-regular fa-eye-slash" onclick = "togglePasswordVisibility('currentPassword', 'currentPasswordIcon')"></i>
                     </div>
                     <div class = "pass new">
                         <label for = "">New Passowrd</label>
-                        <input type = "password" name = "newPassword" id = "password">
-                        <i class = "toggle-password fa-regular fa-eye-slash" onclick = "togglePasswordVisibility()"></i>
+                        <input type = "password" name = "newPassword" id = "newPassword" disabled>
+                        <i id = "newPasswordIcon" class = "toggle-password fa-regular fa-eye-slash" onclick = "togglePasswordVisibility('newPassword', 'newPasswordIcon')"></i>
                     </div>
                     <div class = "pass confirm">
                         <label for = "">Confirm Passowrd</label>
-                        <input type = "password" name = "confirmPassword" id = "password">
-                        <i class = "toggle-password fa-regular fa-eye-slash" onclick = "togglePasswordVisibility()"></i>
+                        <input type = "password" name = "confirmPassword" id = "confirmPassword" disabled>
+                        <i id = "confirmPasswordIcon" class = "toggle-password fa-regular fa-eye-slash" onclick = "togglePasswordVisibility('confirmPassword', 'confirmPasswordIcon')"></i>
                     </div>
                     <input type = "submit" value = "Verify" onclick = "back()">
                 </div>
