@@ -222,6 +222,10 @@
     font-size: 14px;
 }
 
+.header .nav .password .new input:disabled, .header .nav .password .confirm input:disabled {
+    background-color: #f0f0f0;
+}
+
 .header .nav .user .info .log-out {
     display: flex;
     align-items: center;
