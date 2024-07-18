@@ -28,7 +28,7 @@ class DB {
             return result;
         }
         catch (err) {
-
+            throw err;
         }
     }
     async addNewUser(data) {
