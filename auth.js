@@ -118,6 +118,28 @@ export function verifyEmail(email) {
     return emailRegex.test(email);
 }
 
+export async function verifyPassword(req, res, db) {
+    try {
+        const { inputPassword  } = req.body;
+        const email = req.decoded.email;
+        const result = await db.searchUser([email]);
+        if (result.rows.length > 0) {
+            const user = result.rows[0];
+            const storedPassword = user.password;
+            bcrypt.compare(inputPassword, storedPassword, (err, result) => {
+                if (err || !result) {
+                    return res.status(401).json({ message : "Incorrect password"});
+                }
+                res.status(200).json({ message : "Correct password"});
+            })
+        }
+    }
+    catch (err) {
+        console.error("An error occurred during verifying password");
+        res.status(500).json({ message : "Internal server error"});
+    }
+}
+
 function verify(token) {
     try {
         const decoded = jwt.verify(token, secretKey);
