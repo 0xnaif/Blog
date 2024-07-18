@@ -1,5 +1,5 @@
 import db from "./db.js";
-import {signup, signin, newPassword, verifyToken, verifyEmail} from "./auth.js"
+import {signup, signin, newPassword, verifyToken, verifyEmail, verifyPassword} from "./auth.js"
 import epxress from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -56,7 +56,11 @@ app.post("/forgot-password", (req, res) => {
             res.render("forgot_password", { code : true })
         }
     }
-})
+});
+
+app.get("/verify-password", verifyToken, (req, res) => {
+    verifyPassword(req, res, db);
+});
 
 app.post("/verifyCode", (req, res) => {
     const { one, second, third, forth } = req.body;
@@ -145,7 +149,7 @@ app.delete("/post/:id", verifyToken, async (req, res) => {
         }
     }
     catch (err) {
-        console.error("An error occured during deleting post:\n", err);
+        console.error("An error occurred during deleting post:\n", err);
         res.status(500).json({ message : "Internal server error"});
     }
 });
