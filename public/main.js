@@ -52,9 +52,9 @@ function back() {
     logout_el.setAttribute("style", "display: flex");
 }
 
-function togglePasswordVisibility() {
-    let passowrdField = document.getElementById("password");
-    let passwordIcon = document.querySelector(".toggle-password");
+function togglePasswordVisibility(inputId, iconID) {
+    let passowrdField = document.getElementById(inputId);   
+    let passwordIcon = document.getElementById(iconID);
 
     if (passowrdField.type === "password") {
         passowrdField.type = "text";
@@ -271,4 +271,15 @@ function searchPost() {
             break;
         }
     }
+}
+
+async function verifyPassword() {
+    const currentPassword = document.getElementById("currentPassword").value;
+    const response = await fetch("/verify-password", {
+        method : "POST", 
+        headers : {
+            "Content-Type" : "application/json",
+        },
+        body : JSON.stringify(currentPassword),
+    });
 }
