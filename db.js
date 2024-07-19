@@ -24,7 +24,7 @@ class DB {
 
     async searchUser(data) {
         try {
-            const result = await this.#db.query('SELECT * FROM "user" WHERE "email" = $1;', [data]);
+            const result = await this.#db.query('SELECT * FROM "user" WHERE "email" = $1;', data);
             return result;
         }
         catch (err) {
