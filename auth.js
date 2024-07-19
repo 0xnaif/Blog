@@ -23,7 +23,7 @@ export async function signup(req, res, db) {
         if (password != confirmPassword)
             return res.render("sign-up", {error: "Try again, confirm password doesn't match"});
 
-        const result = await db.searchUser(email);
+        const result = await db.searchUser([email]);
         if (result.rows.length > 0)
             return res.render("sign-up", {error: "User already exists"});
 
@@ -60,7 +60,7 @@ export async function signin(req, res, db) {
         return res.render("sign-in", {error: "Try again, incorrect email or password"});
 
 
-    const result = await db.searchUser(email);
+    const result = await db.searchUser([email]);
     if (result.rows.length == 0)
         return res.render("sign-in", {error: "User not found"});
 
@@ -126,12 +126,15 @@ export async function verifyPassword(req, res, db) {
         if (result.rows.length > 0) {
             const user = result.rows[0];
             const storedPassword = user.password;
-            bcrypt.compare(inputPassword, storedPassword, (err, result) => {
-                if (err || !result) {
+            bcrypt.compare(inputPassword, storedPassword, (err, isMatch) => {
+                if (err || !isMatch) {
                     return res.status(401).json({ message : "Incorrect password"});
                 }
                 res.status(200).json({ message : "Correct password"});
             })
+        }
+        else {
+            res.status(404).json({ message : "User not found"});
         }
     }
     catch (err) {
