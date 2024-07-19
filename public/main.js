@@ -280,6 +280,21 @@ async function verifyPassword() {
         headers : {
             "Content-Type" : "application/json",
         },
-        body : JSON.stringify(currentPassword),
+        body : JSON.stringify({ inputPassword : currentPassword }),
     });
+
+    if (response.ok) {
+        const res = await response.json();
+        document.getElementById("error").innerText = "";
+        document.getElementById("currentPassword").disabled = true;
+        document.getElementById("newPassword").disabled = false;
+        document.getElementById("confirmPassword").disabled = false;
+        document.getElementById("verify").style.display = "none";
+        document.getElementById("change").style.display = "block";
+
+    }
+    else {
+        const res = await response.json();
+        document.getElementById("error").innerText = res.message;
+    }
 }
