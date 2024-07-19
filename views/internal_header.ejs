@@ -45,6 +45,7 @@
                         <input type = "password" name = "currentPassword" id = "currentPassword">
                         <i id = "currentPasswordIcon" class = "toggle-password fa-regular fa-eye-slash" onclick = "togglePasswordVisibility('currentPassword', 'currentPasswordIcon')"></i>
                     </div>
+                    <span id = "error"></span>
                     <div class = "pass new">
                         <label for = "">New Passowrd</label>
                         <input type = "password" name = "newPassword" id = "newPassword" disabled>
@@ -52,10 +53,11 @@
                     </div>
                     <div class = "pass confirm">
                         <label for = "">Confirm Passowrd</label>
-                        <input type = "password" name = "confirmPassword" id = "confirmPassword" disabled>
+                        <input type = "password" name = "confirmPassword" id = "confirmPassword" onpaste = "return false;" disabled>
                         <i id = "confirmPasswordIcon" class = "toggle-password fa-regular fa-eye-slash" onclick = "togglePasswordVisibility('confirmPassword', 'confirmPasswordIcon')"></i>
                     </div>
-                    <input type = "submit" value = "Verify" onclick = "back()">
+                    <input type = "submit" id = "verify" value = "Verify" onclick = "verifyPassword()">
+                    <input type = "submit"  id = "change" value = "Change" onclick = "">
                 </div>
                 <div class = "log-out">
                     <p onclick = "showConfirm('confirm')">Log out</p>
