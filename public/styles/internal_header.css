@@ -169,6 +169,12 @@
     margin-bottom: 0;
 }
 
+.header .nav .user .info #error {
+    font-size: 12px;
+    color: #F00;
+    text-align: center;
+}
+
 .header .nav .user .info .password .pass {
     position: relative;
     display: flex;
@@ -210,6 +216,10 @@
 
 .header .nav .user .info .password input[type = "submit"]:hover {
     opacity: 0.6;   
+}
+
+.header .nav .user .info .password #change {
+    display: none;
 }
 
 .header .nav .user .info .password .pass i {
