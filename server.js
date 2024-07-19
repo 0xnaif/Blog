@@ -58,7 +58,7 @@ app.post("/forgot-password", (req, res) => {
     }
 });
 
-app.get("/verify-password", verifyToken, (req, res) => {
+app.post("/verify-password", verifyToken, (req, res) => {
     verifyPassword(req, res, db);
 });
 
