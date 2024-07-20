@@ -275,26 +275,69 @@ function searchPost() {
 
 async function verifyPassword() {
     const currentPassword = document.getElementById("currentPassword").value;
-    const response = await fetch("/verify-password", {
-        method : "POST", 
+    if (!currentPassword) {
+        document.getElementById("error").innerText = "Password is required. Please enter your password";
+    }
+    else {
+        const response = await fetch("/verify-password", {
+            method : "POST", 
+            headers : {
+                "Content-Type" : "application/json",
+            },
+            body : JSON.stringify({ inputPassword : currentPassword }),
+        });
+    
+        if (response.ok) {
+            const res = await response.json();
+            document.getElementById("error").innerText = "";
+            document.getElementById("currentPassword").disabled = true;
+            document.getElementById("newPassword").disabled = false;
+            document.getElementById("confirmPassword").disabled = false;
+            document.getElementById("verify").style.display = "none";
+            document.getElementById("change").style.display = "block";
+    
+        }
+        else {
+            const res = await response.json();
+            document.getElementById("error").innerText = res.message;
+        }
+    }
+}
+
+async function changePassword() {
+    const newPassword = document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    if (newPassword.length < 8) {
+        return document.getElementById("error").innerText = "Try again, password length must have at least 8 characters"
+    }
+    if (newPassword != confirmPassword) {
+        return document.getElementById("error").innerText = "Try again, confirm password doesn't match";
+    }
+    document.getElementById("error").innerText = "";
+    const response = await fetch("/change-password", {
+        method : "POST",
         headers : {
             "Content-Type" : "application/json",
         },
-        body : JSON.stringify({ inputPassword : currentPassword }),
+        body : JSON.stringify({ newPassword : newPassword,  confirmPassword : confirmPassword}),
     });
-
     if (response.ok) {
-        const res = await response.json();
         document.getElementById("error").innerText = "";
-        document.getElementById("currentPassword").disabled = true;
-        document.getElementById("newPassword").disabled = false;
-        document.getElementById("confirmPassword").disabled = false;
-        document.getElementById("verify").style.display = "none";
-        document.getElementById("change").style.display = "block";
-
+        const res = await response.json();
+        console.log(res);
     }
     else {
-        const res = await response.json();
-        document.getElementById("error").innerText = res.message;
+        if (response.status == 400) {
+            const res = await response.json();
+            if (res.errorCode == 0) {
+                return document.getElementById("error").innerText = "Try again, password length must have at least 8 characters"
+            }
+            else {
+                return document.getElementById("error").innerText = "Try again, confirm password doesn't match";
+            }
+        }
+        else {
+            console.error(res);
+        }
     }
 }
