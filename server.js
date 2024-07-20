@@ -83,10 +83,28 @@ app.get("/new-password", (req, res) => {
     res.render("new_password");
 });
 
-app.post("/new-password",async (req, res) => {
+app.post("/new-password", async (req, res) => {
     newPassword(req, res, db);
-})
+});
 
+app.post("/change-password", verifyToken, (req, res) => {
+    try {
+        const { newPassword, confirmPassword } = req.body;
+        console.log(newPassword);
+        console.log(confirmPassword);
+        if (newPassword.length < 8) {
+            return res.status(400).json({ errorCode : 0 });
+        }
+        if (newPassword != confirmPassword) {
+            return res.status(400).json({ errorCode : 1 });
+        }
+        res.status(200).json({ message : "Everything is good!"});
+    }
+    catch (err) {
+        console.error("An error occurred during changing password");
+        res.status(500).json({ message : "Internal server error" });
+    }
+})
 app.get("/about", (req, res) => {
     res.render("about");
 });
@@ -117,7 +135,7 @@ app.post("/new-post", verifyToken, async (req, res) => {
     }
     catch (err) {
         console.error("An error occurred during adding new post: ", err);
-        res.status(500).send("Internal server error")
+        res.status(500).send("Internal server error");
     }
 });
 
