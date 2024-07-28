@@ -83,7 +83,7 @@ export async function signin(req, res, db) {
     }
 }
 
-export async function newPassword(req, res, db) {
+export function newPassword(req, res, db) {
     try {
         const { password, confirmPassword } = req.body;
         if (password == "" || confirmPassword == "") {
@@ -97,19 +97,28 @@ export async function newPassword(req, res, db) {
         }
         else {
             const email = req.cookies.email;
-            bcrypt.hash(password, saltRounds, async (err, hash) => {
-                if (err) {
-                    console.error("An error occurred during hashing: ", err);
-                    return res.status(500).send("Internal server error");
-                }        
-                await db.changePassword([hash, email]);
-                res.redirect("/signin");
-            });
+            changePassword(password, email, db);
+            res.redirect("/signin");
         }
     }
     catch (err) {
         console.error("An error occurred during creating a new password: ", err);
         res.status(500).send("Internal server error")
+    }
+}
+
+export function changePassword(password, email, db) {
+    try {
+        bcrypt.hash(password, saltRounds, async (err, hash) => {
+            if (err) {
+                console.error("An error occurred during hashing: ", err);
+                return res.status(500).send("Internal server error");
+            }
+            await db.changePassword([hash, email]);
+        });
+    }
+    catch (err) {
+        throw err;
     }
 }
 
