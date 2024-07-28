@@ -6,18 +6,29 @@ function showUserProf() {
     userInfo_el.setAttribute("style", "display: flex");
 }
 
-function showEmail(element) {
+async function showEmail(element) {
     let back_el = document.getElementsByClassName("back")[0];
     let email_info = document.getElementsByClassName("email")[0];
     let email_el = element;
     let password_el = document.getElementsByClassName("password-choice")[0];
     let logout_el = document.getElementsByClassName("log-out")[0];
-    
-    back_el.setAttribute("style", "display: flex");
-    email_el.setAttribute("style", "display: none");
-    password_el.setAttribute("style", "display: none");
-    logout_el.setAttribute("style", "display: none");
-    email_info.setAttribute("style", "display: flex");
+
+    const response = await fetch("/user-info", {
+        method : "GET",
+        headers : {
+            "Content-Type" : "application/json",
+        },
+    });
+    if (response.ok) {
+        const res = await response.json();
+        document.getElementById("email").value = res.info;
+
+        back_el.setAttribute("style", "display: flex");
+        email_el.setAttribute("style", "display: none");
+        password_el.setAttribute("style", "display: none");
+        logout_el.setAttribute("style", "display: none");
+        email_info.setAttribute("style", "display: flex");
+    }
 }
 
 function showPassword(element) {
@@ -74,12 +85,14 @@ function hideUserProf() {
     let back_el = document.getElementsByClassName("back")[0];
     let email_info = document.getElementsByClassName("email")[0];
     let email_el = document.getElementsByClassName("email-choice")[0];
+    let password_info = document.getElementsByClassName("password")[0];
     let password_el = document.getElementsByClassName("password-choice")[0];
     let logout_el = document.getElementsByClassName("log-out")[0];
     
     userInfo_el.setAttribute("style", "display: none");
     overlay.setAttribute("style", "display: none");
     email_info.setAttribute("style", "display: none");
+    password_info.setAttribute("style", "display: none");
     back_el.setAttribute("style", "display: none");
     email_el.setAttribute("style", "display: flex");
     password_el.setAttribute("style", "display: flex");
@@ -88,7 +101,6 @@ function hideUserProf() {
 
 function showConfirm(className) {
     let confirm_el = document.getElementsByClassName(className)[0];
-    console.log(confirm_el);
     confirm_el.setAttribute("style", "display: flex");
 }
 
@@ -98,7 +110,6 @@ function hideConfirm(className) {
 
 function showDeleteConfirm(postID) {
     document.getElementById("to-delete").value = postID;
-    console.log(postID);
     document.getElementsByClassName("delete-confirm")[0].style.display = "flex";;
     document.getElementById("overlay").style.display = "flex";
 }
@@ -116,7 +127,6 @@ function hideShareConfirm(className) {
 }
 
 function changeFocus() {
-    console.log("We are here");
     let codeInputs = document.querySelectorAll(".main form .code input");
 
     for (let i = 0; i < codeInputs.length - 1; i++) {
@@ -324,7 +334,12 @@ async function changePassword() {
     if (response.ok) {
         document.getElementById("error").innerText = "";
         const res = await response.json();
-        console.log(res);
+        document.getElementById("content").innerText = res.message;
+        document.getElementById("response").style.display = "flex";
+        setTimeout(() => {
+            document.getElementById("response").style.display = "none";
+            window.location.href = "/signin";
+        }, 600);
     }
     else {
         if (response.status == 400) {
