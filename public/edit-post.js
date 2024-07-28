@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     setTimeout(() => {
                         document.getElementById("response").style.display = "none";
                         window.location.href = "/posts";
-                    }, 600);
+                    }, 3000);
                 }
                 else {
                     const res = await response.json();
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     setTimeout(() => {
                         document.getElementById("response").style.display = "none";
                         window.location.href = "/posts";
-                    }, 600);
+                    }, 3000);
                 }
             }
         }
