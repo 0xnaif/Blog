@@ -1,5 +1,5 @@
 import db from "./db.js";
-import {signup, signin, newPassword, verifyToken, verifyEmail, verifyPassword} from "./auth.js"
+import {signup, signin, newPassword, verifyToken, verifyEmail, verifyPassword, changePassword} from "./auth.js"
 import epxress from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -90,21 +90,33 @@ app.post("/new-password", async (req, res) => {
 app.post("/change-password", verifyToken, (req, res) => {
     try {
         const { newPassword, confirmPassword } = req.body;
-        console.log(newPassword);
-        console.log(confirmPassword);
         if (newPassword.length < 8) {
             return res.status(400).json({ errorCode : 0 });
         }
         if (newPassword != confirmPassword) {
             return res.status(400).json({ errorCode : 1 });
         }
-        res.status(200).json({ message : "Everything is good!"});
+        const email = req.decoded.email;
+        changePassword(newPassword, email, db);
+        res.status(200).json({ message : "Password changed successfully"});
     }
     catch (err) {
         console.error("An error occurred during changing password");
         res.status(500).json({ message : "Internal server error" });
     }
 })
+
+app.get("/user-info", verifyToken, (req, res) => {
+    try {
+        const email = req.decoded.email;
+        res.status(200).json({ info : email});
+    }
+    catch (err) {
+        console.error("An error occurred during fetching user info: \n", err);
+        res.status(500).json({ message : "Internal server error" });
+    }
+});
+
 app.get("/about", (req, res) => {
     res.render("about");
 });
@@ -115,23 +127,11 @@ app.get("/new-post", verifyToken, (req, res) => {
 
 app.post("/new-post", verifyToken, async (req, res) => {
     try {
-        if (req.body.post === "Post") {
-            const title = req.body.title;
-            const content =  req.body.content;
-
-            if (title === "" || content === "") {
-                const state = "Please complete all empty fields"
-                return res.render("new-post", {state : state, type : "error"});
-            }
-            const state = "New post added successfully"
-            const userId = req.decoded.id
-            const data = [title, content, userId];
-            await db.addNewPost(data);
-            res.render("new-post", {state : state, type : "success"});
-        }
-        else {
-            res.redirect("/");
-        }
+        const { title, content } = req.body;
+        const userId = req.decoded.id
+        const data = [title, content, userId];
+        await db.addNewPost(data);
+        res.status(200).json({ message : "New post added successfully" });
     }
     catch (err) {
         console.error("An error occurred during adding new post: ", err);
@@ -188,9 +188,7 @@ app.put("/edit-post", verifyToken, async (req, res) => {
     try {
         const postID = req.query.id;
         const { title, content } = req.body;
-        const currectDate = new Date();
-        const formattedDate = currectDate.toISOString().split('T')[0];
-        const result = await db.editPost([title, content, formattedDate, postID]);
+        const result = await db.editPost([title, content, postID]);
         if (result.rowCount > 0) {
             res.status(200).json({ message : "Post edited successfully"});
         }
