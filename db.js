@@ -31,6 +31,7 @@ class DB {
             throw err;
         }
     }
+
     async addNewUser(data) {
         try {
             const result =  await this.#db.query('INSERT INTO "user" (name, email, password) VALUES ($1, $2, $3) RETURNING *;', data);
@@ -50,7 +51,7 @@ class DB {
             throw err;
         }
     }
-
+ 
     async changePassword(data) {
         try {
             const result = await this.#db.query('UPDATE "user" SET password = $1 WHERE email = $2', data);
@@ -83,7 +84,7 @@ class DB {
 
     async editPost(data) {
         try {
-            const result = this.#db.query('UPDATE "post" SET title = $1, content = $2, postdate = $3 WHERE id = $4', data);
+            const result = this.#db.query('UPDATE "post" SET title = $1, content = $2 WHERE id = $3', data);
             return result;
         }
         catch (err) {
