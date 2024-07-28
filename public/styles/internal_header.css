@@ -256,7 +256,7 @@
     color: #F00;
 }
 
-.header .nav .user .info .log-out .confirm {
+.header .nav .user .info .log-out .log-out-confirm {
     position: absolute;
     background-color: #FFF;
     top: 0;
@@ -270,7 +270,7 @@
     align-items: center;
 }
 
-.header .nav .user .confirm .confrim-icon {
+.header .nav .user .log-out-confirm .confrim-icon {
     background-color: #FFA800;
     padding: 15px;
     display: flex;
@@ -278,18 +278,18 @@
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25);
 }
 
-.header .nav .user .confirm .confrim-icon i {
+.header .nav .user .log-out-confirm .confrim-icon i {
     color: #FFF;
     font-size: 26px;
     font-weight: 500;
 }
 
-.header .nav .user .confirm p {
+.header .nav .user .log-out-confirm p {
     font-size: 20px;
     font-weight: 700    
 }
 
-.header .nav .user .confirm > div:last-of-type {
+.header .nav .user .log-out-confirm > div:last-of-type {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -297,7 +297,7 @@
     width: inherit;
 }
 
-.header .nav .user .confirm button {
+.header .nav .user .log-out-confirm button {
     width: 80%;
     border: none;
     padding: 10px;
@@ -305,22 +305,27 @@
     font-weight: 600;
 }
 
-.header .nav .user .confirm button a {
+.header .nav .user .log-out-confirm button a {
     text-decoration: none;
     color: #FFF;
 }
 
-.header .nav .user .confirm button:first-of-type {
+.header .nav .user .log-out-confirm button:first-of-type {
     background-color: #FFC85E;
     color: #FFF
 }
 
-.header .nav .user .confirm button:last-of-type {
+.header .nav .user .log-out-confirm button:last-of-type {
     background-color: #FFF;
     color: #FFC85E;
     border: 1.6px solid #FFC85E;
 }
 
-.header .nav .user .confirm button:hover {
+.header .nav .user .log-out-confirm button:hover {
     opacity: 0.8;
+}
+
+#response {
+    right: 2% !important;
+    top: 100% !important;
 }
