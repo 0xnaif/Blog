@@ -1,0 +1,56 @@
+#response {
+    --beforeBackgroundColor: #F00;
+    position: absolute;
+    right: 11%;
+    top: -3%;
+    display: none;  
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    padding: 15px 10px;
+    background-color: #FFF;
+    width: fit-content;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 4;
+}
+
+#response::before {
+    content: "";
+    position: absolute;
+    height: 2.5px;
+    width: 0%;
+    top: 97%;
+    left: 1.5%;
+    background-color: var(--beforeBackgroundColor);
+    animation-name: response;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes response {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 97%;
+    }
+}
+
+#response i {
+    font-size: 22px;
+    color: #F00;
+}
+
+#response span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#response #content {
+    color: #F00;
+}
