@@ -7,27 +7,35 @@ function showUserProf() {
 }
 
 async function showEmail(element) {
-    let back_el = document.getElementsByClassName("back")[0];
-    let email_info = document.getElementsByClassName("email")[0];
-    let email_el = element;
-    let password_el = document.getElementsByClassName("password-choice")[0];
-    let logout_el = document.getElementsByClassName("log-out")[0];
-
-    const response = await fetch("/user-info", {
-        method : "GET",
-        headers : {
-            "Content-Type" : "application/json",
-        },
-    });
-    if (response.ok) {
-        const res = await response.json();
-        document.getElementById("email").value = res.info;
-
-        back_el.setAttribute("style", "display: flex");
-        email_el.setAttribute("style", "display: none");
-        password_el.setAttribute("style", "display: none");
-        logout_el.setAttribute("style", "display: none");
-        email_info.setAttribute("style", "display: flex");
+    try {
+        let back_el = document.getElementsByClassName("back")[0];
+        let email_info = document.getElementsByClassName("email")[0];
+        let email_el = element;
+        let password_el = document.getElementsByClassName("password-choice")[0];
+        let logout_el = document.getElementsByClassName("log-out")[0];
+    
+        const response = await fetch("/user-info", {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+            },
+        });
+        if (response.ok) {
+            const res = await response.json();
+            document.getElementById("email").value = res.info;
+    
+            back_el.setAttribute("style", "display: flex");
+            email_el.setAttribute("style", "display: none");
+            password_el.setAttribute("style", "display: none");
+            logout_el.setAttribute("style", "display: none");
+            email_info.setAttribute("style", "display: flex");
+        }
+        else {
+            window.location.href = "/signin";
+        }
+    }
+    catch (err) {
+        window.location.href = "/signin";
     }
 }
 
@@ -166,7 +174,7 @@ if (url.includes("posts")) {
                     const response = await res.json();
                     document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#63E6BE");
                     document.getElementById("content").style.color = "#63E6BE";
-                    document.querySelector(".main #response i").style.color = "#63E6BE";
+                    document.querySelector("#response i").style.color = "#63E6BE";
                     document.getElementById("response").style.display = "flex";
                     document.getElementById("content").innerText = response.message;
                     setTimeout(() => {
@@ -178,7 +186,7 @@ if (url.includes("posts")) {
                     const response = await res.json(); 
                     document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#F00");
                     document.getElementById("content").style.color = "#F00";
-                    document.querySelector(".main #response i").style.color = "#F00";
+                    document.querySelector("#response i").style.color = "#F00";
                     document.getElementById("response").style.display = "flex";
                     document.getElementById("content").innerText = response.message;
                     setTimeout(() => {
@@ -188,7 +196,7 @@ if (url.includes("posts")) {
                 }
             }
             catch (err) {
-                alert('Error deleting post');
+                window.location.href = "/signin";
             }
             finally {
                 hideDeleteConfirm("delete-confirm");
@@ -284,33 +292,41 @@ function searchPost() {
 }
 
 async function verifyPassword() {
-    const currentPassword = document.getElementById("currentPassword").value;
-    if (!currentPassword) {
-        document.getElementById("error").innerText = "Password is required. Please enter your password";
-    }
-    else {
-        const response = await fetch("/verify-password", {
-            method : "POST", 
-            headers : {
-                "Content-Type" : "application/json",
-            },
-            body : JSON.stringify({ inputPassword : currentPassword }),
-        });
-    
-        if (response.ok) {
-            const res = await response.json();
-            document.getElementById("error").innerText = "";
-            document.getElementById("currentPassword").disabled = true;
-            document.getElementById("newPassword").disabled = false;
-            document.getElementById("confirmPassword").disabled = false;
-            document.getElementById("verify").style.display = "none";
-            document.getElementById("change").style.display = "block";
-    
+    try {
+        const currentPassword = document.getElementById("currentPassword").value;
+        if (!currentPassword) {
+            document.getElementById("error").innerText = "Password is required. Please enter your password";
         }
         else {
-            const res = await response.json();
-            document.getElementById("error").innerText = res.message;
+            const response = await fetch("/verify-password", {
+                method : "POST", 
+                headers : {
+                    "Content-Type" : "application/json",
+                },
+                body : JSON.stringify({ inputPassword : currentPassword }),
+            });
+        
+            if (response.ok) {
+                const res = await response.json();
+                document.getElementById("error").innerText = "";
+                document.getElementById("currentPassword").disabled = true;
+                document.getElementById("newPassword").disabled = false;
+                document.getElementById("confirmPassword").disabled = false;
+                document.getElementById("verify").style.display = "none";
+                document.getElementById("change").style.display = "block";
+        
+            }
+            else if (response.status == 401) {
+                const res = await response.json();
+                document.getElementById("error").innerText = res.message;
+            }
+            else {
+                window.location.href = "/signin";
+            }
         }
+    }
+    catch (err) {
+        window.location.href = "/signin";
     }
 }
 
@@ -334,6 +350,9 @@ async function changePassword() {
     if (response.ok) {
         document.getElementById("error").innerText = "";
         const res = await response.json();
+        document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#63E6BE");
+        document.getElementById("content").style.color = "#63E6BE";
+        document.querySelector("#response i").style.color = "#63E6BE";
         document.getElementById("content").innerText = res.message;
         document.getElementById("response").style.display = "flex";
         setTimeout(() => {
@@ -352,7 +371,35 @@ async function changePassword() {
             }
         }
         else {
-            console.error(res);
+           window.location.href = "/signin";
         }
     }
+}
+
+async function logout() {
+    const response = await fetch("/logout", {
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json",
+        }
+    });
+    if (response.ok) {
+        const res = await response.json();
+        document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#63E6BE");
+        document.getElementById("content").style.color = "#63E6BE";
+        document.querySelector("#response i").style.color = "#63E6BE";
+        document.getElementById("content").innerText = res.message;
+        document.getElementById("response").style.display = "flex";
+        setTimeout(() => {
+            document.getElementById("response").style.display = "none";
+            window.location.href = "/signin";
+        }, 600);
+    }
+    else {
+        window.location.href = "/signin";
+    }
+}
+
+function keepSessionAlive() {
+    fetch("/keep-alive", { method : "POST"});
 }
