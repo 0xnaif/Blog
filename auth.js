@@ -83,6 +83,15 @@ export async function signin(req, res, db) {
     }
 }
 
+export async function logout(res) {
+    try {
+        res.clearCookie("jwtToken");
+    }
+    catch (err) {
+        throw err;
+    }
+}
+
 export function newPassword(req, res, db) {
     try {
         const { password, confirmPassword } = req.body;
