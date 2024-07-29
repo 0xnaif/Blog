@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const res = await response.json();
                     document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#63E6BE");
                     document.getElementById("content").style.color = "#63E6BE";
-                    document.querySelector(".main #response i").style.color = "#63E6BE";
+                    document.querySelector("#response i").style.color = "#63E6BE";
                     document.getElementById("response").style.display = "flex";
                     document.getElementById("content").innerText = res.message;
                     console.log(res.message);
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const res = await response.json();
                     document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#F00");
                     document.getElementById("content").style.color = "#F00";
-                    document.querySelector(".main #response i").style.color = "#F00";
+                    document.querySelector("#response i").style.color = "#F00";
                     document.getElementById("response").style.display = "flex";
                     document.getElementById("content").innerText = res.message;
                     setTimeout(() => {
