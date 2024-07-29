@@ -1,10 +1,8 @@
 import db from "./db.js";
-import {signup, signin, newPassword, verifyToken, verifyEmail, verifyPassword, changePassword} from "./auth.js"
+import { signup, signin, newPassword, verifyToken, verifyEmail, verifyPassword, changePassword, logout } from "./auth.js"
 import epxress from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import { fileURLToPath } from 'url';
-import path from "path";
 const app = epxress();
 const port = 3000;
 
@@ -33,6 +31,17 @@ app.get("/signin", (req, res) => {
 app.post("/signin", (req, res) => {
     signin(req, res, db);
 });
+
+app.post("/logout", (req, res) => {
+    try {
+        logout(res);
+        res.status(200).json({ message : "Logged out successfully" })
+    }
+    catch (err) {
+        console.error("An error occurred during logout: ", err);
+        res.status(500).json({ message : "Internal server error" });
+    }
+})
 
 app.get("/forgot-password", (req, res) => {
     res.render("forgot_password");
@@ -101,7 +110,7 @@ app.post("/change-password", verifyToken, (req, res) => {
         res.status(200).json({ message : "Password changed successfully"});
     }
     catch (err) {
-        console.error("An error occurred during changing password");
+        console.error("An error occurred during changing password: ", err);
         res.status(500).json({ message : "Internal server error" });
     }
 })
@@ -109,7 +118,7 @@ app.post("/change-password", verifyToken, (req, res) => {
 app.get("/user-info", verifyToken, (req, res) => {
     try {
         const email = req.decoded.email;
-        res.status(200).json({ info : email});
+        res.status(200).json({ info : email });
     }
     catch (err) {
         console.error("An error occurred during fetching user info: \n", err);
