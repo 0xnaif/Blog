@@ -1,5 +1,5 @@
 import db from "./db.js";
-import { signup, signin, newPassword, verifyToken, verifyEmail, verifyPassword, changePassword, logout } from "./auth.js"
+import { signup, signin, newPassword, verifyToken, keepAlive, verifyEmail, verifyPassword, changePassword, logout } from "./auth.js"
 import epxress from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -39,6 +39,18 @@ app.post("/logout", (req, res) => {
     }
     catch (err) {
         console.error("An error occurred during logout: ", err);
+        res.status(500).json({ message : "Internal server error" });
+    }
+})
+
+app.post("/keep-alive", verifyToken, (req, res) => {
+    try {
+        console.log("lol!");
+        keepAlive(req, res);
+        res.status(200).json({ message : "Token extended" });
+    }
+    catch (err) {
+        console.error("An error occurred during renewing token: ", err);
         res.status(500).json({ message : "Internal server error" });
     }
 })
