@@ -92,6 +92,20 @@ export async function logout(res) {
     }
 }
 
+export function keepAlive(req, res) {
+    try {
+        const newToken = jwt.sign({ id : req.decoded.id, email : req.decoded.email }, secretKey, { expiresIn : "30m" });
+        res.cookie("jwtToken", newToken, {
+            maxAge : 1800000,
+            httpOnly : true,
+            secure : false,
+        });
+    }
+    catch (err) {
+        throw err;
+    }
+}
+
 export function newPassword(req, res, db) {
     try {
         const { password, confirmPassword } = req.body;
