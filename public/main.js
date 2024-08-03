@@ -385,6 +385,7 @@ async function logout() {
     });
     if (response.ok) {
         const res = await response.json();
+        document.getElementById("overlay").style.display = "none";
         document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#63E6BE");
         document.getElementById("content").style.color = "#63E6BE";
         document.querySelector("#response i").style.color = "#63E6BE";
@@ -403,3 +404,27 @@ async function logout() {
 function keepSessionAlive() {
     fetch("/keep-alive", { method : "POST"});
 }
+
+const activityEvents = ['mousemove', 'keydown', 'scroll', 'click'];
+const inactivityDuration = 600_000;
+const keepAliveInterval = 300_000;
+let inactivityTimer;
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    console.log("Here");
+    inactivityTimer = setTimeout(() => {
+        document.getElementById("overlay").style.display = "flex";
+        document.getElementById("inactive").style.display = "flex";
+    }, inactivityDuration);
+
+    setTimeout(() => {
+        keepSessionAlive();
+    }, keepAliveInterval);
+}
+
+activityEvents.forEach(event => {
+    document.addEventListener(event, resetInactivityTimer);
+});
+
+resetInactivityTimer();
