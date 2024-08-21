@@ -386,6 +386,7 @@ async function logout() {
     if (response.ok) {
         const res = await response.json();
         document.getElementById("overlay").style.display = "none";
+        document.getElementById("inactive").style.display = "none";
         document.getElementById("response").style.setProperty('--beforeBackgroundColor', "#63E6BE");
         document.getElementById("content").style.color = "#63E6BE";
         document.querySelector("#response i").style.color = "#63E6BE";
