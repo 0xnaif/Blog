@@ -45,7 +45,6 @@ app.post("/logout", (req, res) => {
 
 app.post("/keep-alive", verifyToken, (req, res) => {
     try {
-        console.log("lol!");
         keepAlive(req, res);
         res.status(200).json({ message : "Token extended" });
     }
