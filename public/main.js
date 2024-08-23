@@ -411,9 +411,8 @@ const inactivityDuration = 600_000;
 const keepAliveInterval = 300_000;
 let inactivityTimer;
 
-function resetInactivityTimer() {
+function resetInactivityTimer() {   
     clearTimeout(inactivityTimer);
-    console.log("Here");
     inactivityTimer = setTimeout(() => {
         document.getElementById("overlay").style.display = "flex";
         document.getElementById("inactive").style.display = "flex";
