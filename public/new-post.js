@@ -47,3 +47,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 });
+
+function applyCommand(command) {
+    document.execCommand(command, false, null);
+    
+}
+
+const editor = document.getElementById("editor");
+const editorContainer = document.getElementById("editorContainer");
+
+editor.addEventListener("focus", () => {
+    editorContainer.classList.add("focused");
+});
+
+editor.addEventListener("blur", () => {
+    editorContainer.classList.remove("focused");
+});
+
+function changeFontSize(size) {
+    const selectedText = window.getSelection().toString();
+    console.log(selectedText);
+    if (selectedText.length > 0) {
+        console.log("inside");
+        const span = document.createElement('span');
+        span.style.fontSize = size;
+        document.getElementById("editor").style.fontSize = size;
+        span.textContent = selectedText;
+
+        const range = window.getSelection().getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(span);
+    }
+}
