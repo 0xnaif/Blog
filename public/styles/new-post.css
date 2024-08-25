@@ -105,18 +105,15 @@ body {
     padding: 10px;
     width: 100%;
     min-height: 250px;
+    overflow: visible;
     background-color: #FFF;
     border-radius: 0 0 6px 6px;
     border-top: 0;
     outline: none;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     border-top: 2px solid #D1D1D1;
 }
-
-/* .main .post form #editor:focus > #editorContainer {
-    border-color: #FFA800;
-} */
 
 .main .post form div input, .main .post form > div > button {
     border: none;
