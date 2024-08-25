@@ -21,7 +21,7 @@
             <form id = "new-post" action = "./new-post" method = "post">
                 <div>
                     <label for = "title">Title</label>
-                    <input type = "text" name = "title" id = "title">
+                    <input type = "text" name = "title" id = "title"  dir = "auto">
                 </div>
                 <div>
                     <label for = "post">Post</label>
@@ -40,13 +40,13 @@
                             </div>
                             <div class = "font-size">
                                 <select id = "fontSizeSelect" onchange = "changeFontSize(this.value)">
-                                    <option value = "12px">12 px</option>
-                                    <option value = "14px" selected>14 px</option>
-                                    <option value = "16px">16 px</option>
-                                    <option value = "18px">18 px</option>
-                                    <option value = "24px">24 px</option>
-                                    <option value = "32px">32 px</option>
-                                    <option value = "48px">48 px</option>
+                                    <option value = "1">10 px</option>
+                                    <option value = "2">13 px</option>
+                                    <option value = "3" selected>16 px</option>
+                                    <option value = "4">18 px</option>
+                                    <option value = "5">24 px</option>
+                                    <option value = "6">32 px</option>
+                                    <option value = "7">48 px</option>
                                 </select>
                             </div>
                             <div class="text-align">
@@ -64,7 +64,7 @@
                                 <i class="fa-regular fa-image"></i>
                             </div>
                         </div>
-                        <div id = "editor" contenteditable = "true" dir="auto"></div>
+                        <div id = "editor" contenteditable = "true" dir = "auto"></div>
                     </div>
                 </div>
                 <div>
