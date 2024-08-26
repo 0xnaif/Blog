@@ -67,3 +67,38 @@ editor.addEventListener("blur", () => {
 function changeFontSize(size) {
     document.execCommand("fontSize", false, size);
 }
+
+function insertImage(fileInput) {
+    const file = fileInput.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        // reader.readAsDataURL(file);
+
+        reader.onload = (event) => {
+            const imgTag = `<img src = "${event.target.result}" alt = "Uploaded image" style = "max-width : 100%;">`
+            insertImageAtCursor(imgTag);
+        };
+        
+        reader.readAsDataURL(file);
+    }
+}
+
+function insertImageAtCursor(html) {
+    const editor = document.getElementById("editor");
+    editor.focus();
+    
+    if (window.getSelection) {
+        const selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+
+            const frag = range.createContextualFragment(html);
+            range.insertNode(frag);
+            range.collapse();
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+}
