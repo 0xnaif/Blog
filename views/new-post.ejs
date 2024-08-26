@@ -61,7 +61,10 @@
                                 </button>
                             </div>  
                             <div class = "media">
-                                <i class="fa-regular fa-image"></i>
+                                <input type = "file" id = "imageUpload" accept = "image/*,image/gif" style = "display: none;" onchange = "insertImage(this)">
+                                <button type = "button" onclick = "document.getElementById('imageUpload').click();">
+                                    <i class="fa-regular fa-image"></i>
+                                </button>
                             </div>
                         </div>
                         <div id = "editor" contenteditable = "true" dir = "auto"></div>
