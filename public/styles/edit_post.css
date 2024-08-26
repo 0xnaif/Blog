@@ -100,7 +100,7 @@ body {
     align-items: center;
 }
 
-.main .post form div {
+.main .post form > div {
     width: inherit;
     display: flex;
     flex-direction: column;
@@ -111,14 +111,66 @@ body {
     margin-bottom: 15px;
 }
 
-.main .post form textarea {
+.main .post form #editorContainer {
+    padding: 0;
     margin-bottom: 15px;
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 250px;
+    border-radius: 6px;
+    border: 2px solid #D1D1D1;
+    gap: 0;
 }
 
-.main .post form div input, .main .post form div textarea, .main .post form button {
+.main .post form #toolbar {
+    padding: 8px 0 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+    margin: 0 auto;
+    width: 40%;
+}
+
+.main .post form #toolbar div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    gap: 14px;
+}
+
+.main .post form #toolbar button {
+    border: none;
+    background-color: inherit;
+    outline: none;
+    padding: 0;
+}
+
+.main .post form #toolbar div > * {
+    cursor: pointer;
+}
+
+.main .post form #toolbar #fontSizeSelect {
+    min-height: 24px;
+    font-size: 14px;
+}
+
+.main .post form #editor {
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    min-height: 250px;
+    overflow: visible;
+    background-color: #FFF;
+    border-radius: 0 0 6px 6px;
+    border-top: 0;
+    outline: none;
+    font-size: 16px;
+    font-weight: 300;
+    border-top: 2px solid #D1D1D1;
+}
+
+.main .post form div input, .main .post form > div > button {
     border: none;
     border-radius: 6px;
     padding: 13px;
@@ -128,7 +180,7 @@ body {
     font-weight: 300;
 }
 
-.main .post form div input:focus, .main .post form div textarea:focus {
+.main .post form div input:focus, .main .post form #editorContainer.focused {
     border-color: #FFA800;
 }
 
@@ -141,7 +193,7 @@ body {
     font-weight: 400;
 }
 
-.main .post form button {
+.main .post form > div > button {
     background-color: #FFF;
     color: #FFC85E;
     border: 2px solid #FFC85E;
@@ -149,7 +201,7 @@ body {
     font-weight: 400;
 }
 
-.main .post form input[type = "submit"]:hover, .main .post form button:hover {
+.main .post form input[type = "submit"]:hover, .main .post form button[type = "submit"]:hover {
     opacity: 0.8;
 }
 
