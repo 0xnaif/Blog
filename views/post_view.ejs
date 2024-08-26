@@ -22,14 +22,14 @@
             <i class="fa-solid fa-angle-left"></i>
             <span>Back</span>
         </div>
-        <h4><%= post.title %></h4>
+        <h4  dir = "auto"><%= post.title %></h4>
         <i class = "fa-solid fa-share-nodes" data-title = '<%= post.title %>' data-content = '<%= post.content %>'></i>
        </div>
        <div class="date">
         <span>Date: </span>
         <span><%= post.postdate %></span>
        </div>
-       <div class = "post"><%= post.content %></div>
+       <div class = "post" dir = "auto"><%- post.content %></div>
        <div id = "shareForm" class = "share">
             <div class="head">
                 <h4>Share via</h4>
