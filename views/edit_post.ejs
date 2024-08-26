@@ -22,15 +22,55 @@
                 <form id = "edit-form">
                     <div>
                         <label for = "title">Title</label>
-                        <input type="text" name = "title" value = '<%= post.title %>'>
+                        <input id = "title" type="text" name = "title" value = '<%= post.title %>' dir = "auto">
                     </div>
                     <div>
                         <label for = "post">Post</label>
-                        <textarea name = "content" cols="30" rows="10"><%= post.content %></textarea>
+                        <div id = "editorContainer">
+                            <div id = "toolbar">
+                                <div class = "text-format">
+                                    <button type = "button" onclick = "applyCommand('bold')">
+                                        <i class="fa-solid fa-bold"></i>
+                                    </button>
+                                    <button type = "button" onclick = "applyCommand('underline')">
+                                        <i class="fa-solid fa-underline"></i>
+                                    </button>
+                                    <button type = "button" onclick = "applyCommand('italic')">
+                                        <i class="fa-solid fa-italic"></i>
+                                    </button>
+                                </div>
+                                <div class = "font-size">
+                                    <select id = "fontSizeSelect" onchange = "changeFontSize(this.value)">
+                                        <option value = "1">10 px</option>
+                                        <option value = "2">13 px</option>
+                                        <option value = "3" selected>16 px</option>
+                                        <option value = "4">18 px</option>
+                                        <option value = "5">24 px</option>
+                                        <option value = "6">32 px</option>
+                                        <option value = "7">48 px</option>
+                                    </select>
+                                </div>
+                                <div class="text-align">
+                                    <button type = "button" onclick = "applyCommand('justifyLeft')">
+                                        <i class="fa-solid fa-align-left"></i>
+                                    </button>
+                                    <button type = "button" onclick = "applyCommand('justifyCenter')">
+                                        <i class="fa-solid fa-align-center"></i>
+                                    </button>
+                                    <button type = "button" onclick = "applyCommand('justifyRight')">
+                                        <i class="fa-solid fa-align-right"></i>
+                                    </button>
+                                </div>  
+                                <div class = "media">
+                                    <i class="fa-regular fa-image"></i>
+                                </div>
+                            </div>
+                            <div id = "editor" contenteditable = "true" dir = "auto"><%- post.content %></div>
+                        </div>
                     </div>
                     <div>
                         <input type = "submit" value = "Edit" name = "post">
-                        <button id = "backButton">Back</button>
+                        <button type = "submit" id = "backButton">Back</button>
                     </div>
                 </form>
            </div>
