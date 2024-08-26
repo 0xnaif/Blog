@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             else {
                 const title = document.getElementById("title").value;
-                const content = document.getElementById("postContent").value;
-                if (title.length == 0 || content.length == 0) {
+                const content = document.getElementById("editor");
+                if (title.length == 0 || content.textContent.length == 0) {
                     document.getElementById("content").innerText = "Please complete all empty fields";
                     document.getElementById("response").style.display = "flex";
                     setTimeout(() => {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         headers : {
                             "Content-Type" : "application/json",
                         },
-                        body : JSON.stringify({ title : title, content : content }),
+                        body : JSON.stringify({ title : title, content : content.innerHTML }),
                     });
                     if (response.ok) {
                         const res = await response.json();
@@ -65,17 +65,5 @@ editor.addEventListener("blur", () => {
 });
 
 function changeFontSize(size) {
-    const selectedText = window.getSelection().toString();
-    console.log(selectedText);
-    if (selectedText.length > 0) {
-        console.log("inside");
-        const span = document.createElement('span');
-        span.style.fontSize = size;
-        document.getElementById("editor").style.fontSize = size;
-        span.textContent = selectedText;
-
-        const range = window.getSelection().getRangeAt(0);
-        range.deleteContents();
-        range.insertNode(span);
-    }
+    document.execCommand("fontSize", false, size);
 }
