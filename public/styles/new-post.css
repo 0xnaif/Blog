@@ -115,6 +115,12 @@ body {
     border-top: 2px solid #D1D1D1;
 }
 
+.main .post form #editor img {
+    max-width: 100%;
+    display: block;
+    margin: 10px 0;
+}
+
 .main .post form div input, .main .post form > div > button {
     border: none;
     border-radius: 6px;
