@@ -1,3 +1,4 @@
+const files = [];
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("new-post");
     form.addEventListener("submit", async (e) => {
@@ -69,18 +70,19 @@ function changeFontSize(size) {
 }
 
 function insertImage(fileInput) {
-    const file = fileInput.files[0];
-    
-    if (file) {
-        const reader = new FileReader();
-        // reader.readAsDataURL(file);
+    const filesList = fileInput.files;
+    if (filesList.length > 0) {
+        for (const file of filesList) {
+            files.push(file);
+            const reader = new FileReader();
 
-        reader.onload = (event) => {
-            const imgTag = `<img src = "${event.target.result}" alt = "Uploaded image" style = "max-width : 100%;">`
-            insertImageAtCursor(imgTag);
-        };
-        
-        reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const imgTag = `<img src = "${event.target.result}" alt = "Uploaded image" style = "max-width : 100%;">`
+                insertImageAtCursor(imgTag);
+            };
+            
+            reader.readAsDataURL(file);
+        }
     }
 }
 
