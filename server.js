@@ -7,8 +7,8 @@ const app = epxress();
 const port = 3000;
 
 app.use(epxress.static("public"));
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended : true, limit : "10mb"}));
+app.use(bodyParser.json({ limit : "10mb"}));
 app.use(cookieParser());
 app.set("view engine", "ejs");
 
